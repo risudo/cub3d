@@ -55,3 +55,4 @@ dkms.conf
 # others
 compile_commands.json
 .cache
+.vscode
