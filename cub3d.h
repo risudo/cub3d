@@ -5,6 +5,7 @@
 #ifndef CUB3D_CUB3D_H
 #define CUB3D_CUB3D_H
 #define WALL '1'
+#include <math.h>
 
 typedef struct s_img {
     void *img;
@@ -30,6 +31,7 @@ typedef struct s_game {
     double dirY;
     double planeX;
     double planeY;
+	int color;
 } t_game;
 
 typedef struct s_ray {
@@ -48,4 +50,7 @@ typedef struct s_ray {
     int side;
 } t_ray;
 
+int key_hook(int key_code, t_game *game);
+int destroy_and_exit(void *a);
+void draw_screen(t_game *game);
 #endif //CUB3D_CUB3D_H
