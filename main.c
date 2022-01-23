@@ -1,35 +1,10 @@
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 #include "cub3d.h"
 #include "mlx.h"
-
-int worldMap[24][24] = {
-    {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-    {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-    {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-    {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-    {1, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 0, 0, 0, 0, 3, 0, 3, 0, 3, 0, 0, 0, 1},
-    {1, 0, 0, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-    {1, 0, 0, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0, 1},
-    {1, 0, 0, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-    {1, 0, 0, 0, 0, 0, 2, 2, 0, 2, 2, 0, 0, 0, 0, 3, 0, 3, 0, 3, 0, 0, 0, 1},
-    {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-    {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-    {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-    {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-    {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-    {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-    {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-    {1, 4, 4, 4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-    {1, 4, 0, 4, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-    {1, 4, 0, 0, 0, 0, 5, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-    {1, 4, 0, 4, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-    {1, 4, 0, 4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-    {1, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-    {1, 4, 4, 4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-    {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}};
 
 char *map[] = {"111111111111111111111111", "100000000000000000000001",
                "100000000000000000000001", "100000000000000000000001",
@@ -96,19 +71,6 @@ void init_ray(t_ray *ray, t_game *game, int x) {
     }
 }
 
-int get_color(char c)
-{
-	if (c == '1')
-		return 0x00FF0000;
-	else if (c == '2')
-		return 0x00008000;
-	else if (c == '3')
-		return 0x000000ff;
-	else if (c == '4')
-		return 0x00ffffff;
-	return 0;
-}
-
 void dda(t_ray *ray, t_game *game) {
     while (42) {
         if (ray->sideDistX < ray->sideDistY) {
@@ -121,9 +83,8 @@ void dda(t_ray *ray, t_game *game) {
             ray->side = 1;
         }
         if (map[ray->mapX][ray->mapY] > '0')
-			break;
+            break;
     }
-	game->color = get_color(map[ray->mapX][ray->mapY]);
     if (ray->side == 0)
         ray->perpWallDist = ray->sideDistX - ray->deltaDistX;
     else
@@ -150,6 +111,13 @@ int get_drawEnd(const int lineHeight, const int screenHeight,
     return (ret);
 }
 
+unsigned int get_color_texture(t_img *img, int x, int y) {
+    char *dst;
+
+    dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
+    return (*(unsigned int *)dst);
+}
+
 void draw_line(t_ray *ray, t_game *game, int x) {
     const int lineHeight = (int)(game->screenHeight / ray->perpWallDist);
     const int drawStart =
@@ -166,7 +134,12 @@ void draw_line(t_ray *ray, t_game *game, int x) {
             my_mlx_pixel_put(&game->img, x, height, 0x00808080);
         }
         if (height > drawStart && height <= drawEnd) {
-			my_mlx_pixel_put(&game->img, x, height, game->color);
+            int tex_x = x % 61;
+            double tex_y =
+                ((double)height - drawStart) / (double)lineHeight * 61;
+            unsigned int color =
+                get_color_texture(&game->tex_n, x % 61, (int)tex_y);
+            my_mlx_pixel_put(&game->img, x, height, color);
         }
         ++height;
     }
@@ -186,14 +159,23 @@ void draw_screen(t_game *game) {
     mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
 }
 
+void init_tex(t_game *game) {
+    game->tex_n.img =
+        mlx_xpm_file_to_image(game->mlx, "./textures/wall.xpm",
+                              &game->tex_n.width, &game->tex_n.height);
+    game->tex_n.addr =
+        mlx_get_data_addr(game->tex_n.img, &game->tex_n.bits_per_pixel,
+                          &game->tex_n.line_length, &game->tex_n.endian);
+}
+
+#include <unistd.h>
 int main(void) {
     t_game game;
 
     init_game(&game);
+    init_tex(&game);
     draw_screen(&game);
-    printf("key_hook\n");
     mlx_key_hook(game.win, &key_hook, &game);
     mlx_hook(game.win, 33, 1L << 17, destroy_and_exit, NULL);
     mlx_loop(game.mlx);
 }
-

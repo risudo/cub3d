@@ -5,6 +5,15 @@
 #ifndef CUB3D_CUB3D_H
 #define CUB3D_CUB3D_H
 #define WALL '1'
+#define KEY_W 119
+#define KEY_A 97
+#define KEY_S 115
+#define KEY_D 100
+#define KEY_LEFT 65361
+#define KEY_RIGHT 65363
+#define KEY_ESC 65307
+#define MOVE_SPEED 0.2
+#define PI 3.1415
 #include <math.h>
 
 typedef struct s_img {
@@ -13,12 +22,18 @@ typedef struct s_img {
     int bits_per_pixel;
     int line_length;
     int endian;
+	int width;
+	int height;
 } t_img;
 
 typedef struct s_game {
     void *mlx;
     void *win;
     t_img img;
+	t_img tex_n;
+	t_img tex_s;
+	t_img tex_w;
+	t_img tex_e;
     int screenWidth;
     int screenHeight;
     int mapWidth;

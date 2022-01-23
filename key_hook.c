@@ -1,15 +1,6 @@
 #include "cub3d.h"
 #include <stdlib.h>
 #include <stdio.h>
-#define W 119
-#define A 97
-#define S 115
-#define D 100
-#define LEFT 65361
-#define RIGHT 65363
-#define ESC 65307
-#define MOVE_SPEED 0.2
-#define PI 3.1415
 
 void move_player(t_game *game, int x, int y) {
     game->posX += x * MOVE_SPEED;
@@ -31,20 +22,19 @@ int destroy_and_exit(void *a) {
     return (0);
 }
 int key_hook(int key_code, t_game *game) {
-	printf("key_code: %d\n", key_code);
-    if (key_code == W)
+    if (key_code == KEY_W)
         move_player(game, 0, -1);
-    if (key_code == A)
+    if (key_code == KEY_A)
         move_player(game, -1, 0);
-    if (key_code == S)
+    if (key_code == KEY_S)
         move_player(game, 0, 1);
-    if (key_code == D)
+    if (key_code == KEY_D)
         move_player(game, 1, 0);
-    if (key_code == LEFT)
+    if (key_code == KEY_LEFT)
         rotate_player(game, PI / 50);
-    if (key_code == RIGHT)
+    if (key_code == KEY_RIGHT)
         rotate_player(game, -PI / 50);
-    if (key_code == ESC)
+    if (key_code == KEY_ESC)
         destroy_and_exit(game);
 	draw_screen(game);
     return (0);
