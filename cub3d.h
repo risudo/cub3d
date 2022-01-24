@@ -10,15 +10,16 @@
 #define KEY_ESC 65307
 #ifndef M_PI
 #define M_PI 3.1415926535
-#endif
+#endif /* CUB3D_H */
 #define MOVE_SPEED 0.1
 #define ROTATE_SPEED (M_PI / 60)
 #define KEY_PRESS 2
 #define KEY_RELEASE 3
-#define KEY_PRESS_MASK (1L<<0)
-#define KEY_RELEASE_MASK (1L<<1)
+#define KEY_PRESS_MASK (1L << 0)
+#define KEY_RELEASE_MASK (1L << 1)
 #include <math.h>
 #include <stdbool.h>
+#include <stdlib.h>
 
 typedef struct s_img {
   void *img;
@@ -43,6 +44,7 @@ typedef struct s_game {
   int screenHeight;
   unsigned int sky_color;
   unsigned int ground_color;
+  char **map;
   double posX;
   double posY;
   double dirX;
@@ -84,15 +86,21 @@ typedef struct s_tex {
   int height;
 } t_tex;
 
-typedef struct s_cubfile {
-	char *path_tex_n;
-	char *path_tex_s;
-	char *path_tex_w;
-	char *path_tex_e;
-	unsigned int sky_color;
-	unsigned int ground_color;
-	char **map;
-} t_cubfile;
+typedef struct cub_file {
+  char *north_wall_path;
+  char *south_wall_path;
+  char *western_wall_path;
+  char *east_wall_path;
+  unsigned int sky_color;
+  unsigned int ground_color;
+  char **map;
+  int posX;
+  int posY;
+  double dirX;
+  double dirY;
+  double planeX;
+  double planeY;
+} t_cub_file;
 
 int key_hook(int key_code, t_game *game);
 int destroy_and_exit(void *a);
@@ -102,6 +110,7 @@ void rotate_player(t_game *game, double angle);
 int key_press_hook(int key_code, t_game *game);
 int key_release_hook(int key_code, t_game *game);
 
+bool init_cub_file(t_cub_file *cub_file, char **file_content);
+char **read_file(int fd, size_t idx);
 
-#endif //CUB3D_H
-
+#endif // CUB3D_H

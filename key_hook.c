@@ -17,9 +17,9 @@ void rotate_player(t_game *game, double angle) {
 
 void move_player(t_game *game, double angle) {
   rotate_player(game, angle);
-//   if (map[(int)(game->posX - game->dirX * MOVE_SPEED)][(int)game->posY] == '0')
+  if (game->map[(int)(game->posX - game->dirX * MOVE_SPEED)][(int)game->posY] == '0')
     game->posX -= game->dirX * MOVE_SPEED;
-//   if (map[(int)game->posX][(int)(game->posY - game->dirY * MOVE_SPEED)] == '0')
+  if (game->map[(int)game->posX][(int)(game->posY - game->dirY * MOVE_SPEED)] == '0')
     game->posY -= game->dirY * MOVE_SPEED;
   rotate_player(game, -angle);
 }
@@ -49,6 +49,10 @@ int key_press_hook(int key_code, t_game *game) {
         game->is_moving = true;
     if (key_code == KEY_LEFT || key_code == KEY_RIGHT)
         game->is_roteting = true;
+		printf("dirx %lf\n", game->dirX);
+		printf("diry %lf\n", game->dirY);
+		printf("planex %lf\n", game->planeX);
+		printf("planey %lf\n\n", game->planeY);
     return (0);
 }
 

@@ -7,11 +7,11 @@ MLX_DIR = ./minilibx-linux/
 
 INC = -I$(X11) -I$(MLX_DIR)
 
-CFLAGS = $(INC) #-Wall -Wextra -Werror
+CFLAGS = $(INC) -g -fsanitize=address #-Wall -Wextra -Werror
 
 LIBS =  -L$(MLX_DIR) -lmlx_Darwin -L$(X11) -lXext -lX11 -lm
 
-SRC = main.c key_hook.c
+SRC = main.c key_hook.c read_cubfile.c get_next_line.c get_next_line_utils.c
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
@@ -28,5 +28,8 @@ fclean: clean
 	$(RM) $(NAME)
 
 re: fclean all
+
+gnl:
+	gcc -g -o read_all read_cubfile.c get_next_line.c get_next_line_utils.c
 
 .PHONY: all clean fclean re
