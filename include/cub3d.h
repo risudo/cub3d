@@ -10,7 +10,7 @@
 #define KEY_ESC 65307
 #ifndef M_PI
 #define M_PI 3.1415926535
-#endif /* CUB3D_H */
+#endif
 #define MOVE_SPEED 0.1
 #define ROTATE_SPEED (M_PI / 60)
 #define KEY_PRESS 2
@@ -82,8 +82,6 @@ typedef struct s_tex {
   int texX;
   int texY;
   double texPos;
-  int width;
-  int height;
 } t_tex;
 
 typedef struct cub_file {
@@ -113,4 +111,4 @@ int key_release_hook(int key_code, t_game *game);
 bool init_cub_file(t_cub_file *cub_file, char **file_content);
 char **read_file(int fd, size_t idx);
 
-#endif // CUB3D_H
+#endif /* CUB3D_H */

@@ -1,4 +1,4 @@
-#include "get_next_line.h"
+#include "utils.h"
 #include <stdbool.h>
 #include <libc.h>
 #include "cub3d.h"
@@ -93,7 +93,10 @@ char **read_file(int fd, size_t idx) {
 
   is_end = get_next_line(fd, &line);
   if (is_end == GNL_ERROR)
+  {
+	printf("error\n");
     exit(1);
+  }
   else if (is_end == GNL_EOF) {
     ret = xmalloc(sizeof(*ret) * (idx + 2));
 	ret[idx] = line;
