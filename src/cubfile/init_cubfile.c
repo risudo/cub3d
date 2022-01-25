@@ -24,8 +24,8 @@ char	*get_path_to_texture(char *direction, char *line)
 	splited = ft_split(line, ' ');
 	if (!splited)
 		return (NULL);
-	if (*splited && !ft_strncmp(*splited, direction, 3) && splited[1] &&
-		!splited[2])
+	if (*splited && !ft_strncmp(*splited, direction, 3)
+			&& splited[1] && !splited[2])
 		ret = ft_strdup(splited[1]);
 	else
 		ret = NULL;
@@ -128,65 +128,54 @@ void	init_player(t_cub_file *cub_file)
 	}
 }
 
+void	check_wall_path(char *wall_path, t_cub_file *cubfile)
+{
+	if (!wall_path)
+	{
+		clear_cub_file(cubfile);
+		xput_error("check_wall_path");
+	}
+}
 
+void check_get_color_error(bool error, t_cub_file *cubfile)
+{
+	if (error)
+	{
+		clear_cub_file(cubfile);
+		xput_error("check_get_color_error");
+	}
+}
+
+void	skip_empty_line(char **file_content, size_t *idx)
+{
+	while (file_content[*idx] && !*file_content[*idx])
+		(*idx)++;
+}
 
 bool	init_cub_file(t_cub_file *cub_file, char **file_content)
 {
 	size_t	idx;
-	bool	is_error;
-	char	*wall_paths[4] = {
-		cub_file->north_wall_path,
-		cub_file->south_wall_path,
-		cub_file->western_wall_path,
-		cub_file->east_wall_path,
-	};
-;
+	bool	error;
 
 	*cub_file = (t_cub_file){};
 	idx = 0;
 	cub_file->north_wall_path = get_path_to_texture("NO", file_content[idx++]);
-	if (!cub_file->north_wall_path) {
-		clear_cub_file(cub_file);
-		printf("error!!\n");
-		return (true);
-	}
+	check_wall_path(cub_file->north_wall_path, cub_file);
 	cub_file->south_wall_path = get_path_to_texture("SO", file_content[idx++]);
-	if (!cub_file->north_wall_path) {
-		clear_cub_file(cub_file);
-		printf("error!!\n");
-		return (true);
-	}
-	cub_file->western_wall_path =
-		get_path_to_texture("WE", file_content[idx++]);
-	if (!cub_file->north_wall_path) {
-		clear_cub_file(cub_file);
-		printf("error!!\n");
-		return (true);
-	}
+	check_wall_path(cub_file->south_wall_path, cub_file);
+	cub_file->western_wall_path = get_path_to_texture("WE", file_content[idx++]);
+	check_wall_path(cub_file->western_wall_path, cub_file);
 	cub_file->east_wall_path = get_path_to_texture("EA", file_content[idx++]);
-	if (!cub_file->north_wall_path) {
-		clear_cub_file(cub_file);
-		printf("error!!\n");
-		return (true);
-	}
-	while (file_content[idx] && !*file_content[idx])
-		idx++;
+	check_wall_path(cub_file->east_wall_path, cub_file);
 
-	cub_file->sky_color = get_color(file_content[idx++], 'F', &is_error);
-	if (is_error) {
-		clear_cub_file(cub_file);
-		printf("error!!\n");
-		return (true);
-	}
-	cub_file->ground_color = get_color(file_content[idx++], 'C', &is_error);
-	if (is_error) {
-		clear_cub_file(cub_file);
-		printf("error!!\n");
-		return (true);
-	}
+	skip_empty_line(file_content, &idx);
 
-	while (file_content[idx] && !*file_content[idx])
-		idx++;
+	cub_file->sky_color = get_color(file_content[idx++], 'F', &error);
+	check_get_color_error(error, cub_file);
+	cub_file->ground_color = get_color(file_content[idx++], 'C', &error);
+	check_get_color_error(error, cub_file);
+
+	skip_empty_line(file_content, &idx);
 	cub_file->map = &file_content[idx];
 	init_player(cub_file);
 	/* validate_map(); */
