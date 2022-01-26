@@ -11,8 +11,7 @@ int main(void) {
   t_cub_file cub_file;
   char **file_content;
 
-  int fd = open("./cubfiles/example.cub", O_RDONLY);
-  file_content = read_file(fd, 0);
+  file_content = read_file("./cubfiles/example.cub");
   init_cub_file(&cub_file, file_content);
   init_game(&game, &cub_file);
   init_textures(&game, &cub_file);
