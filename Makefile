@@ -17,15 +17,30 @@ DPSDIR	=	./dps
 
 VPATH = src:\
 		src/draw:\
-		src/init:\
+		src/game:\
 		src/utils:\
 		src/cubfile
 
 SRCS =	main.c \
-		key_hook.c \
 		get_next_line_utils.c \
 		get_next_line.c \
-		read_cubfile.c
+		read_cubfile.c \
+		calc_coordinates_of_wall.c \
+		calc_wall_height.c \
+		dda.c \
+		draw_line.c \
+		draw_screen.c \
+		init_ray.c \
+		pixel_color.c \
+		set_wall.c \
+		key_hook.c \
+		init_textures.c \
+		init_game.c \
+		game_loop.c \
+		destroy_and_exit.c
+
+
+# init_textures.c 
 
 
 OBJS = $(addprefix $(OBJDIR)/, $(notdir $(SRCS:.c=.o)))
