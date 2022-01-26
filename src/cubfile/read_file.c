@@ -1,5 +1,7 @@
 #include "../../include/cubfile.h"
 #include "../../include/utils.h"
+#include <fcntl.h>
+#include "utils.h"
 
 char **read_file_rec(int fd, size_t idx)
 {
@@ -9,10 +11,7 @@ char **read_file_rec(int fd, size_t idx)
 
 	is_end = get_next_line(fd, &line);
 	if (is_end == GNL_ERROR)
-	{
-		printf("error\n");
-		exit(1);
-	}
+		xput_error("gnl");
 	else if (is_end == GNL_EOF)
 	{
 		ret = xmalloc(sizeof(*ret) * (idx + 2));
@@ -21,7 +20,7 @@ char **read_file_rec(int fd, size_t idx)
 		return (ret);
 	}
 	else
-		ret = read_file(fd, idx + 1);
+		ret = read_file_rec(fd, idx + 1);
 	ret[idx] = line;
 	return (ret);
 }
