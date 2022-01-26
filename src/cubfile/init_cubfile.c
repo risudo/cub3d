@@ -64,18 +64,21 @@ unsigned int	get_color(char *line, char identifier, bool *is_error)
 	unsigned char	red;
 	unsigned char	grean;
 	unsigned char	blue;
+	char			**splited;
 
+	splited= ft_split(line, ' ');
 	*is_error = false;
-	if (*line != identifier)
-		return ((unsigned int)(*is_error = true));
-	line += 2;
-	red = cub_atoi(&line, ',', is_error);
+	if (splited[0][0] != identifier || \
+		ft_strlen(splited[0]) != 1 || \
+		!splited[1] || splited[2])
+		return ((unsigned int)(*is_error = true));//
+	red = cub_atoi(&splited[1], ',', is_error);
 	if (*is_error)
 		return ((unsigned int)*is_error);
-	grean = cub_atoi(&line, ',', is_error);
+	grean = cub_atoi(&splited[1], ',', is_error);
 	if (*is_error)
 		return ((unsigned int)*is_error);
-	blue = cub_atoi(&line, '\0', is_error);
+	blue = cub_atoi(&splited[1], '\0', is_error);
 	if (*is_error)
 		return ((unsigned int)*is_error);
 	return (red << 16 | grean << 8 | blue);
@@ -178,6 +181,6 @@ bool	init_cub_file(t_cub_file *cub_file, char **file_content)
 	skip_empty_line(file_content, &idx);
 	cub_file->map = &file_content[idx];
 	init_player(cub_file);
-	/* validate_map(); */
+//	validate_map();
 	return (false);
 }
