@@ -6,9 +6,9 @@ void	draw_line(t_game *game, t_ray *ray, t_texture *texture, int x)
 	int				y;
 
 	y = 0;
-	while (y < ray->drawStart)
+	while (y < ray->drawStart && y < game->screenHeight)
 		set_pixel_color(&game->screen, x, y++, game->sky_color);
-	while (y < ray->drawEnd)
+	while (y < ray->drawEnd && y < game->screenHeight)
 	{
 		texture->textureY = (int)texture->texturePos & (texture->wall->height - 1);
 		texture->texturePos += texture->step;

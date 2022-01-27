@@ -13,16 +13,28 @@ static void	rotate_player(t_game *game, double angle)
 	game->planeY = oldPlaneX * sin(angle) + game->planeY * cos(angle);
 }
 
+static bool is_floor(int c)
+{
+	return (c == 'N' || \
+			c == 'S' || \
+			c == 'W' || \
+			c == 'E' || \
+			c == '0');
+}
+
 static void	move_player(t_game *game, double angle)
 {
-	const int	new_posX = (int)(game->posX - game->dirX * MOVE_SPEED);
-	const int	new_posY = (int)(game->posY - game->dirY * MOVE_SPEED);
+	int	new_posX;
+	int	new_posY;
 
 	rotate_player(game, angle);
-	if (game->map[new_posX][(int)game->posY] == '0')
+	new_posX = (int)(game->posX - game->dirX * MOVE_SPEED);
+	new_posY = (int)(game->posY - game->dirY * MOVE_SPEED);
+	if (is_floor(game->map[new_posX][new_posY]))
+	{
 		game->posX -= game->dirX * MOVE_SPEED;
-	if (game->map[(int)game->posX][new_posY] == '0')
 		game->posY -= game->dirY * MOVE_SPEED;
+	}
 	rotate_player(game, -angle);
 }
 
@@ -30,7 +42,7 @@ static void	update_player(t_game *game)
 {
 	if (game->is_moving)
 		move_player(game, game->move_dir);
-	if (game->is_roteting)
+	else if (game->is_roteting)
 		rotate_player(game, game->move_dir);
 }
 
