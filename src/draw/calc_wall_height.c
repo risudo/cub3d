@@ -6,7 +6,10 @@ void	calc_wall_height(t_game *game, t_ray *ray)
 		ray->perpWallDist = (ray->sideDistX - ray->deltaDistX);
 	else
 		ray->perpWallDist = (ray->sideDistY - ray->deltaDistY);
-	ray->lineHeight = (int)(game->screenHeight / ray->perpWallDist);
+	if (ray->perpWallDist)
+		ray->lineHeight = (int)(game->screenHeight / ray->perpWallDist);
+	else
+		ray->lineHeight = 1e30;
 	ray->drawStart = -ray->lineHeight / 2 + game->screenHeight / 2 + \
 					game->pitch;
 	if (ray->drawStart < 0)
