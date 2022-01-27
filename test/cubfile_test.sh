@@ -10,7 +10,7 @@ test()
 	echo
 }
 
-gcc -I../include/ cubfile_test.c ../src/utils/* ../src/cubfile/read_file.c ../src/cubfile/init_cubfile.c -o testcubfile.out
+gcc -I../include/ cubfile_test.c ../src/utils/* ../src/cubfile/read_file.c ../src/cubfile/init_cubfile.c ../src/cubfile/validate_map.c -o testcubfile.out
 
 cubfiles="../cubfiles/*"
 for filepath in $cubfiles; do

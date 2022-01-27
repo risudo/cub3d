@@ -89,46 +89,33 @@ void	init_player(t_cub_file *cub_file)
 	size_t	x;
 	size_t	y;
 
-	y = 0;
-	while (cub_file->map[y]) {
-		x = 0;
-		while (cub_file->map[y][x]) {
-			if (cub_file->map[y][x] == 'N' || cub_file->map[y][x] == 'S' ||
-				cub_file->map[y][x] == 'D' || cub_file->map[y][x] == 'E') {
-				cub_file->posX = y;
-				cub_file->posY = x;
-				if (cub_file->map[y][x] == 'N') {
-					cub_file->dirX = 0;
-					cub_file->dirY = -1;
-					cub_file->planeX = -0.66;
-					cub_file->planeY = 0;
-				}
-				if (cub_file->map[y][x] == 'S') {
-					cub_file->dirX = 0;
-					cub_file->dirY = 1;
-					cub_file->planeX = 0.66;
-					cub_file->planeY = 0;
-				}
-				if (cub_file->map[y][x] == 'W') {
-					cub_file->dirX = -1;
-					cub_file->dirY = 0;
-					cub_file->planeX = 0;
-					cub_file->planeY = 0.66;
-				}
-				if (cub_file->map[y][x] == 'E') {
-					cub_file->dirX = 1;
-					cub_file->dirY = 0;
-					cub_file->planeX = 0;
-					cub_file->planeY = -0.66;
-				}
-				break;
-			}
-			++x;
-		}
-		if (cub_file->map[y][x])
-			break;
-		++y;
+	x = cub_file->posX;
+	y = cub_file->posY;
+	if (cub_file->map[y][x] == 'N') {
+		cub_file->dirX = 0;
+		cub_file->dirY = -1;
+		cub_file->planeX = -0.66;
+		cub_file->planeY = 0;
 	}
+	if (cub_file->map[y][x] == 'S') {
+		cub_file->dirX = 0;
+		cub_file->dirY = 1;
+		cub_file->planeX = 0.66;
+		cub_file->planeY = 0;
+	}
+	if (cub_file->map[y][x] == 'W') {
+		cub_file->dirX = -1;
+		cub_file->dirY = 0;
+		cub_file->planeX = 0;
+		cub_file->planeY = 0.66;
+	}
+	if (cub_file->map[y][x] == 'E') {
+		cub_file->dirX = 1;
+		cub_file->dirY = 0;
+		cub_file->planeX = 0;
+		cub_file->planeY = -0.66;
+	}
+	cub_file->map[y][x] = '0';
 }
 
 void	check_wall_path(char *wall_path, t_cub_file *cubfile)
@@ -180,7 +167,7 @@ bool	init_cub_file(t_cub_file *cub_file, char **file_content)
 
 	skip_empty_line(file_content, &idx);
 	cub_file->map = &file_content[idx];
+	validate_map(cub_file->map, &cub_file->posX, &cub_file->posY);
 	init_player(cub_file);
-//	validate_map();
 	return (false);
 }

@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <libc.h>
-/* #include "../../include/utils.h" */
+#include "utils.h"
 
 static bool flood_fill(char **map, int x, int y)
 {
@@ -74,7 +74,7 @@ bool	is_valid_char(char c)
 	return (c == '0' || c == '1' || c == ' ' || is_player_pos(c));
 }
 
-int	check_map_char(char **map, size_t *player_pos_x, size_t *player_pos_y)
+int	check_map_char(char **map, int *player_pos_x, int *player_pos_y)
 {
 	size_t	i;
 	size_t	j;
@@ -104,20 +104,20 @@ int	check_map_char(char **map, size_t *player_pos_x, size_t *player_pos_y)
 	return (is_player);
 }
 
-int	validate_map(char **map, size_t *player_pos_x, size_t *player_pos_y)
+int	validate_map(char **map, int *player_pos_x, int *player_pos_y)
 {
 	char	**copy;
 	bool	error;
 	size_t	map_row;
 
-	if (check_map_char(map, player_pos_x, player_pos_y) == -1)
-		return (-1);
+	if (!map[0] || check_map_char(map, player_pos_x, player_pos_y) == -1)
+		xput_error("map error");
 	map_row = count_map_row(map);
 	copy = allocate_copy_map(map, map_row);
 	error = flood_fill(copy, *player_pos_x, *player_pos_y);
 	free_copy_map(copy);
 	if (error)
-		return (-1);
+		xput_error("map error");
 	return (0);
 }
 

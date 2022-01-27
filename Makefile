@@ -26,6 +26,7 @@ SRCS =	main.c \
 		get_next_line.c \
 		read_file.c \
 		init_cubfile.c \
+		validate_map.c \
 		calc_coordinates_of_wall.c \
 		calc_wall_height.c \
 		dda.c \
