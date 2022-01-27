@@ -4,31 +4,8 @@
 #include <libc.h>
 /* #include "../../include/utils.h" */
 
-#define CLEAR "\033[1;1H\033[0J"
-#define RED "\033[31m"
-#define RESET "\033[39m"
-
-void	print_map(char **map)
+static bool flood_fill(char **map, int x, int y)
 {
-	printf("%s\n", CLEAR);
-	for (int i = 0; map[i]; i++)
-	{
-		for (int j = 0; map[i][j]; j++)
-		{
-			if (map[i][j] == 'x')
-				printf("%s", RED);
-			printf("%c", map[i][j]);
-			printf("%s", RESET);
-		}
-		printf("\n");
-	}
-	printf("\n");
-	usleep(30000);
-}
-
-bool flood_fill(char **map, int x, int y)
-{
-	print_map(map);
 	if (x < 0 || y < 0 || !map[y] || map[y][x] == ' ' || map[y][x] == '\0')
 	{
 		return (true);
@@ -46,40 +23,40 @@ bool flood_fill(char **map, int x, int y)
 			|| flood_fill(map, x, y + 1) || flood_fill(map, x, y - 1));
 }
 
-char **allocate_copy_map(char **map, size_t map_row)
+static char **allocate_copy_map(char **map, size_t map_row)
 {
 	char	**copy;
 	size_t	i;
 
 	i = 0;
-	copy = (char**)malloc((sizeof(char *)) * (map_row + 1));
+	copy = (char**)malloc((sizeof(char *)) * (map_row + 1)); //TODO:use xmalloc
 	while (map[i])
 	{
-		copy[i] = strdup(map[i]); //TODO:ft_strdup使う
+		copy[i] = strdup(map[i]); //TODO:use ft_strdup
 		i++;
 	}
 	copy[i] = NULL;
 	return copy;
 }
 
-void free_copy_map(char **map) //splitのやつ使えるかも？
+static void free_copy_map(char **map) //splitのやつ使えるかも？
 {
 	size_t	i;
 
 	i = 0;
 	while (map[i])
 	{
-		printf("free\n");
 		free(map[i]);
+		i++;
 	}
-		printf("free 2d\n");
 	free(map);
 }
 
-size_t	count_map_row(char **map)
+static size_t	count_map_row(char **map)
 {
 	size_t	i;
 
+	i = 0;
 	while (map[i])
 	{
 		i++;
@@ -87,54 +64,62 @@ size_t	count_map_row(char **map)
 	return (i);
 }
 
-bool	validate_map(char **map, int x, int y)
+bool	is_player_pos(char c)
+{
+	return (c == 'N' || c == 'S' || c == 'W' || c == 'E');
+}
+
+bool	is_valid_char(char c)
+{
+	return (c == '0' || c == '1' || c == ' ' || is_player_pos(c));
+}
+
+int	check_map_char(char **map, size_t *player_pos_x, size_t *player_pos_y)
+{
+	size_t	i;
+	size_t	j;
+	bool	is_player;
+
+	i = 0;
+	is_player = false;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (!is_valid_char(map[i][j]))
+				return (-1);
+			if (is_player_pos(map[i][j]) && is_player)
+				return (-1);
+			if (is_player_pos(map[i][j]))
+			{
+				*player_pos_x = j;
+				*player_pos_y = i;
+				is_player = true;
+			}
+			j++;
+		}
+		i++;
+	}
+	return (is_player);
+}
+
+int	validate_map(char **map, size_t *player_pos_x, size_t *player_pos_y)
 {
 	char	**copy;
-	bool	ret;
+	bool	error;
 	size_t	map_row;
 
+	if (check_map_char(map, player_pos_x, player_pos_y) == -1)
+		return (-1);
 	map_row = count_map_row(map);
 	copy = allocate_copy_map(map, map_row);
-	ret = flood_fill(copy, x, y);
-	/* free_copy_map(copy); */
-	return (ret);
+	error = flood_fill(copy, *player_pos_x, *player_pos_y);
+	free_copy_map(copy);
+	if (error)
+		return (-1);
+	return (0);
 }
 
-int main(void)
-{
-	char *map2[] = {
-		"        1111111111111111111111111",
-		"        1000000000110000000000001",
-		"        1011000001110000000000001",
-		"        1001000000000000000000001",
-		"111111111011000001110000000000001",
-		"100000000011000001110111110111111",
-		"11110111111111011100000010001",
-		"11110111111111011101010010001",
-		"11000000110101011100000010001",
-		"10000000000000001100000010001",
-		"10000000000000001101010010001",
-		"11000001110101011111011110N0111",
-		"11110111 1110101 101111010001",
-		"11111111 1111111 111111111111",
-		NULL,
-	};
-	char *error_map1[] = {
-		"        1111111111111111111111111",
-		"        1000000000110000000000001",
-		"        1011000001110000000000001",
-		"        1001000000000000000000001",
-		"111111011011000001110000000000001",
-		"100000000011000001110111110111111",
-		"11110111111111011100000010001",
-		"11110111111111011101010010001",
-		"11000000110101011100000010001",
-		"10000000000000001100000010001",
-		"10000000000000001101010010001",
-		"11000001110101011111011110N0111",
-		"11110111 1110101 101111010001",
-		"11111111 1111111 111111111111",
-		NULL,
-	};
-	printf("map2: %d\n", validate_map(error_map1, 26, 11));
-}
+// validate_map でプレイヤーの場所出してから init_player
+//
