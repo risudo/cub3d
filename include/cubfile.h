@@ -11,7 +11,7 @@ typedef struct	cub_file {
 	unsigned int	sky_color;
 	unsigned int	ground_color;
 	char			**map;
-	int				posX;
+	int				posX; //? size_tにしたら動かなくなるのなんで？？
 	int				posY;
 	double			dirX;
 	double			dirY;

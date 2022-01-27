@@ -1,18 +1,8 @@
 #include <libc.h>
 #include <stdbool.h>
 
-#include "../../include/cubfile.h"
-#include "../../include/utils.h"
-
-void	clear_string_array(char **arr)
-{
-	size_t	idx;
-
-	idx = 0;
-	while (arr && arr[idx])
-		free(arr[idx++]);
-	free(arr);
-}
+#include "cubfile.h"
+#include "utils.h"
 
 char	*get_path_to_texture(char *direction, char *line)
 {
@@ -81,6 +71,7 @@ unsigned int	get_color(char *line, char identifier, bool *is_error)
 	blue = cub_atoi(&splited[1], '\0', is_error);
 	if (*is_error)
 		return ((unsigned int)*is_error);
+//	clear_string_array(splited); //ダブルフリーになるのなんで？？
 	return (red << 16 | grean << 8 | blue);
 }
 

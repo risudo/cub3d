@@ -45,7 +45,8 @@ SRCS =	main.c \
 		ft_strlen.c \
 		ft_strncmp.c \
 		xmalloc.c \
-		xput_error.c
+		xput_error.c \
+		clear_string_array.c
 
 
 # init_textures.c 

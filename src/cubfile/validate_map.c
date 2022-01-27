@@ -1,7 +1,5 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <stdbool.h>
-#include <libc.h>
 #include "utils.h"
 
 static bool flood_fill(char **map, int x, int y)
@@ -29,27 +27,14 @@ static char **allocate_copy_map(char **map, size_t map_row)
 	size_t	i;
 
 	i = 0;
-	copy = (char**)malloc((sizeof(char *)) * (map_row + 1)); //TODO:use xmalloc
+	copy = (char**)xmalloc((sizeof(char *)) * (map_row + 1));
 	while (map[i])
 	{
-		copy[i] = strdup(map[i]); //TODO:use ft_strdup
+		copy[i] = ft_strdup(map[i]);
 		i++;
 	}
 	copy[i] = NULL;
 	return copy;
-}
-
-static void free_copy_map(char **map) //splitのやつ使えるかも？
-{
-	size_t	i;
-
-	i = 0;
-	while (map[i])
-	{
-		free(map[i]);
-		i++;
-	}
-	free(map);
 }
 
 static size_t	count_map_row(char **map)
@@ -115,11 +100,8 @@ int	validate_map(char **map, int *player_pos_x, int *player_pos_y)
 	map_row = count_map_row(map);
 	copy = allocate_copy_map(map, map_row);
 	error = flood_fill(copy, *player_pos_x, *player_pos_y);
-	free_copy_map(copy);
+	clear_string_array(copy);
 	if (error)
 		xput_error("map error");
 	return (0);
 }
-
-// validate_map でプレイヤーの場所出してから init_player
-//
