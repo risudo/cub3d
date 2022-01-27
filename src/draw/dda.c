@@ -16,7 +16,7 @@ void	dda(t_game *game, t_ray *ray)
 			ray->mapY += ray->stepY;
 			ray->side = 1;
 		}
-		if (game->map[ray->mapX][ray->mapY] > '0')
+		if (game->map[ray->mapX][ray->mapY] == '1')
 			break ;
 	}
 }
