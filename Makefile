@@ -24,7 +24,8 @@ VPATH = src:\
 SRCS =	main.c \
 		get_next_line_utils.c \
 		get_next_line.c \
-		read_cubfile.c \
+		read_file.c \
+		init_cubfile.c \
 		calc_coordinates_of_wall.c \
 		calc_wall_height.c \
 		dda.c \
@@ -37,7 +38,13 @@ SRCS =	main.c \
 		init_textures.c \
 		init_game.c \
 		game_loop.c \
-		destroy_and_exit.c
+		destroy_and_exit.c \
+		ft_split.c \
+		ft_strdup.c \
+		ft_strlen.c \
+		ft_strncmp.c \
+		xmalloc.c \
+		xput_error.c
 
 
 # init_textures.c 

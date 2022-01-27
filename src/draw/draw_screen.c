@@ -1,4 +1,5 @@
 #include "cub3d.h"
+#include "mlx.h"
 
 int	draw_screen(t_game *game)
 {
