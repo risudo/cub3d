@@ -3,6 +3,7 @@ SO ./textures/collectible.xpm
 WE ./textures/exit.xpm
 EA ./textures/player3.xpm
 
+F 102,205,170,111
 C 105,105,105
 
 111111111111111111111111
