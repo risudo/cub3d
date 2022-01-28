@@ -38,55 +38,55 @@ typedef struct s_game
 	void		*mlx;
 	void		*win;
 	t_img		screen;
-	t_img		texture_n;
-	t_img		texture_s;
-	t_img		texture_w;
-	t_img		texture_e;
-	int			screenWidth;
-	int			screenHeight;
+	t_img		north_wall;
+	t_img		south_wall;
+	t_img		west_wall;
+	t_img		east_wall;
+	int			screen_width;
+	int			screen_height;
 	uint32_t	sky_color;
 	uint32_t	ground_color;
 	char		**map;
-	double		posX;
-	double		posY;
-	double		dirX;
-	double		dirY;
-	double		planeX;
-	double		planeY;
+	double		pos_x;
+	double		pos_y;
+	double		dir_x;
+	double		dir_y;
+	double		plane_x;
+	double		plane_y;
 	int			pitch;
 	bool		is_moving;
-	bool		is_roteting;
+	bool		is_rotating;
 	double		move_dir;
 }t_game;
 
 typedef struct s_ray
 {
-	double	cameraX;
-	double	rayDirX;
-	double	rayDirY;
-	int		mapX;
-	int		mapY;
-	double	sideDistX;
-	double	sideDistY;
-	double	deltaDistX;
-	double	deltaDistY;
-	double	perpWallDist;
-	int		stepX;
-	int		stepY;
+	double	camera_x;
+	double	dir_x;
+	double	dir_y;
+	int		map_x;
+	int		map_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	double	perp_wall_dist;
+	int		step_x;
+	int		step_y;
 	int		side;
-	int		lineHeight;
-	int		drawStart;
-	int		drawEnd;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
 }t_ray;
 
 typedef struct s_texture
 {
 	t_img *wall;
-	double wallX;
+	double wall_x;
 	double step;
-	int textureX;
-	int textureY;
-	double texturePos;
+	int texture_x;
+	int texture_y;
+	double texture_pos;
 }t_texture;
 
 typedef struct cub_file
@@ -100,10 +100,10 @@ typedef struct cub_file
 	char **map;
 	int posX;
 	int posY;
-	double dirX;
-	double dirY;
-	double planeX;
-	double planeY;
+	double dir_x;
+	double dir_y;
+	double plane_x;
+	double plane_y;
 }t_cub_file;
 
 int			draw_screen(t_game *game);

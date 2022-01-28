@@ -25,7 +25,7 @@ int	key_press_hook(int key_code, t_game *game)
 		game->is_moving = true;
 	if (key_code == KEY_LEFT || \
 		key_code == KEY_RIGHT)
-		game->is_roteting = true;
+		game->is_rotating = true;
 	return (0);
 }
 
@@ -33,7 +33,7 @@ int	key_release_hook(int key_code, t_game *game)
 {
 	if (game->is_moving)
 		game->is_moving = false;
-	if (game->is_roteting)
-		game->is_roteting = false;
+	if (game->is_rotating)
+		game->is_rotating = false;
 	return (0);
 }

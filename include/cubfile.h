@@ -13,10 +13,10 @@ typedef struct	cub_file {
 	char			**map;
 	int				posX;
 	int				posY;
-	double			dirX;
-	double			dirY;
-	double			planeX;
-	double			planeY;
+	double			dir_x;
+	double			dir_y;
+	double			plane_x;
+	double			plane_y;
 }	t_cub_file;
 
 char	**read_file(char *filepath);
