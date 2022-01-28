@@ -98,28 +98,28 @@ void	init_player(t_cub_file *cub_file)
 				cub_file->posX = y;
 				cub_file->posY = x;
 				if (cub_file->map[y][x] == 'N') {
-					cub_file->dirX = 0;
-					cub_file->dirY = -1;
-					cub_file->planeX = -0.66;
-					cub_file->planeY = 0;
+					cub_file->dir_x = 0;
+					cub_file->dir_y = -1;
+					cub_file->plane_x = -0.66;
+					cub_file->plane_y = 0;
 				}
 				if (cub_file->map[y][x] == 'S') {
-					cub_file->dirX = 0;
-					cub_file->dirY = 1;
-					cub_file->planeX = 0.66;
-					cub_file->planeY = 0;
+					cub_file->dir_x = 0;
+					cub_file->dir_y = 1;
+					cub_file->plane_x = 0.66;
+					cub_file->plane_y = 0;
 				}
 				if (cub_file->map[y][x] == 'W') {
-					cub_file->dirX = -1;
-					cub_file->dirY = 0;
-					cub_file->planeX = 0;
-					cub_file->planeY = 0.66;
+					cub_file->dir_x = -1;
+					cub_file->dir_y = 0;
+					cub_file->plane_x = 0;
+					cub_file->plane_y = 0.66;
 				}
 				if (cub_file->map[y][x] == 'E') {
-					cub_file->dirX = 1;
-					cub_file->dirY = 0;
-					cub_file->planeX = 0;
-					cub_file->planeY = -0.66;
+					cub_file->dir_x = 1;
+					cub_file->dir_y = 0;
+					cub_file->plane_x = 0;
+					cub_file->plane_y = -0.66;
 				}
 				break;
 			}
