@@ -1,7 +1,20 @@
-#include <stdio.h>
-#include <fcntl.h>
 #include "../include/cubfile.h"
-#include <stdbool.h>
+#include <libc.h>
+
+void	end(void)__attribute__((destructor));
+
+void	end(void)
+{
+	pid_t	current_pid;
+	char	cmd_str[50];
+	int		ret;
+
+	current_pid = getpid();
+	sprintf(cmd_str, "%s %d %s\n", "leaks", current_pid, ">> leaks.txt 2>&1");
+	ret = system(cmd_str);
+	if (ret)
+		printf("\e[31m!leak detected!\e[0m\n");
+}
 
 void print_map(char **map)
 {
