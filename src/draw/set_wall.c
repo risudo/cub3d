@@ -4,16 +4,16 @@ void	set_wall(t_game *game, t_ray *ray, t_texture *texture)
 {
 	if (ray->side == 0)
 	{
-		if (ray->rayDirX > 0)
-			texture->wall = &game->texture_e;
+		if (ray->dir_x > 0)
+			texture->wall = &game->east_wall;
 		else
-			texture->wall = &game->texture_w;
+			texture->wall = &game->west_wall;
 	}
 	else
 	{
-		if (ray->rayDirY > 0)
-			texture->wall = &game->texture_s;
+		if (ray->dir_y > 0)
+			texture->wall = &game->south_wall;
 		else
-			texture->wall = &game->texture_n;
+			texture->wall = &game->north_wall;
 	}
 }

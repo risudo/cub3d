@@ -8,7 +8,7 @@ int	draw_screen(t_game *game)
 	int		x;
 
 	x = 0;
-	while (x < game->screenWidth)
+	while (x < game->screen_width)
 	{
 		init_ray(game, &ray, x);
 		dda(game, &ray);

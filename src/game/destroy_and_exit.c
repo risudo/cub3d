@@ -4,14 +4,14 @@
 
 static void	destroy_textures(t_game *game)
 {
-	if (game->texture_n.img)
-		mlx_destroy_image(game->mlx, game->texture_n.img);
-	if (game->texture_s.img)
-		mlx_destroy_image(game->mlx, game->texture_s.img);
-	if (game->texture_w.img)
-		mlx_destroy_image(game->mlx, game->texture_w.img);
-	if (game->texture_e.img)
-		mlx_destroy_image(game->mlx, game->texture_e.img);
+	if (game->north_wall.img)
+		mlx_destroy_image(game->mlx, game->north_wall.img);
+	if (game->south_wall.img)
+		mlx_destroy_image(game->mlx, game->south_wall.img);
+	if (game->west_wall.img)
+		mlx_destroy_image(game->mlx, game->west_wall.img);
+	if (game->east_wall.img)
+		mlx_destroy_image(game->mlx, game->east_wall.img);
 }
 
 int	destroy_and_exit(void *arg)
