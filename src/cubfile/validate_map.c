@@ -49,12 +49,12 @@ static size_t	count_map_row(char **map)
 	return (i);
 }
 
-bool	is_player_pos(char c)
+static bool	is_player_pos(char c)
 {
 	return (c == 'N' || c == 'S' || c == 'W' || c == 'E');
 }
 
-bool	is_valid_char(char c)
+static bool	is_valid_char(char c)
 {
 	return (c == '0' || c == '1' || c == ' ' || is_player_pos(c));
 }
@@ -86,7 +86,9 @@ int	check_map_char(char **map, int *player_pos_x, int *player_pos_y)
 		}
 		i++;
 	}
-	return (is_player);
+	if (is_player)
+		return (0);
+	return (-1);
 }
 
 int	validate_map(char **map, int *player_pos_x, int *player_pos_y)

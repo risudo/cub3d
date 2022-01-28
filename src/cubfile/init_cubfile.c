@@ -10,15 +10,15 @@ char	*get_path_to_texture(char *direction, char *line)
 	char	*ret;
 
 	if (!line)
-		return (NULL);
+		xput_error("path to texture");
 	splited = ft_split(line, ' ');
 	if (!splited)
-		return (NULL);
+		xput_error("path to texture");
 	if (*splited && !ft_strncmp(*splited, direction, 3)
 			&& splited[1] && !splited[2])
 		ret = ft_strdup(splited[1]);
 	else
-		ret = NULL;
+		xput_error("path to texture");
 	clear_string_array(splited);
 	return (ret);
 }
@@ -58,19 +58,19 @@ unsigned int	get_color(char *line, char identifier, bool *is_error)
 
 	splited= ft_split(line, ' ');
 	*is_error = false;
-	if (splited[0][0] != identifier || \
+	if (!splited[0] || splited[0][0] != identifier || \
 		ft_strlen(splited[0]) != 1 || \
 		!splited[1] || splited[2])
-		return ((unsigned int)(*is_error = true));//
+		xput_error("get color");
 	red = cub_atoi(&splited[1], ',', is_error);
 	if (*is_error)
-		return ((unsigned int)*is_error);
+		xput_error("get color");
 	grean = cub_atoi(&splited[1], ',', is_error);
 	if (*is_error)
-		return ((unsigned int)*is_error);
+		xput_error("get color");
 	blue = cub_atoi(&splited[1], '\0', is_error);
 	if (*is_error)
-		return ((unsigned int)*is_error);
+		xput_error("get color");
 //	clear_string_array(splited); //ダブルフリーになるのなんで？？
 	return (red << 16 | grean << 8 | blue);
 }
@@ -113,24 +113,6 @@ void	init_player(t_cub_file *cub_file)
 	cub_file->map[y][x] = '0';
 }
 
-void	check_wall_path(char *wall_path, t_cub_file *cubfile)
-{
-	if (!wall_path)
-	{
-		clear_cub_file(cubfile);
-		xput_error("check_wall_path");
-	}
-}
-
-void check_get_color_error(bool error, t_cub_file *cubfile)
-{
-	if (error)
-	{
-		clear_cub_file(cubfile);
-		xput_error("check_get_color_error");
-	}
-}
-
 void	skip_empty_line(char **file_content, size_t *idx)
 {
 	while (file_content[*idx] && !*file_content[*idx])
@@ -145,24 +127,15 @@ bool	init_cub_file(t_cub_file *cub_file, char **file_content)
 	*cub_file = (t_cub_file){};
 	idx = 0;
 	cub_file->north_wall_path = get_path_to_texture("NO", file_content[idx++]);
-	check_wall_path(cub_file->north_wall_path, cub_file);
 	cub_file->south_wall_path = get_path_to_texture("SO", file_content[idx++]);
-	check_wall_path(cub_file->south_wall_path, cub_file);
 	cub_file->western_wall_path = get_path_to_texture("WE", file_content[idx++]);
-	check_wall_path(cub_file->western_wall_path, cub_file);
 	cub_file->east_wall_path = get_path_to_texture("EA", file_content[idx++]);
-	check_wall_path(cub_file->east_wall_path, cub_file);
-
 	skip_empty_line(file_content, &idx);
-
 	cub_file->sky_color = get_color(file_content[idx++], 'F', &error);
-	check_get_color_error(error, cub_file);
 	cub_file->ground_color = get_color(file_content[idx++], 'C', &error);
-	check_get_color_error(error, cub_file);
-
 	skip_empty_line(file_content, &idx);
 	cub_file->map = &file_content[idx];
-	validate_map(cub_file->map, &cub_file->posX, &cub_file->posY);
+	validate_map(cub_file->map, &cub_file->pos_x, &cub_file->pos_y);
 	init_player(cub_file);
 	return (false);
 }
