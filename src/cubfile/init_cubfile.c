@@ -80,27 +80,31 @@ void	init_player(t_cub_file *cub_file)
 	size_t	x;
 	size_t	y;
 
-	x = cub_file->posX;
-	y = cub_file->posY;
-	if (cub_file->map[y][x] == 'N') {
+	x = cub_file->pos_x;
+	y = cub_file->pos_y;
+	if (cub_file->map[y][x] == 'N')
+	{
 		cub_file->dir_x = 0;
 		cub_file->dir_y = -1;
 		cub_file->plane_x = -0.66;
 		cub_file->plane_y = 0;
 	}
-	if (cub_file->map[y][x] == 'S') {
+	if (cub_file->map[y][x] == 'S')
+	{
 		cub_file->dir_x = 0;
 		cub_file->dir_y = 1;
 		cub_file->plane_x = 0.66;
 		cub_file->plane_y = 0;
 	}
-	if (cub_file->map[y][x] == 'W') {
+	if (cub_file->map[y][x] == 'W')
+	{
 		cub_file->dir_x = -1;
 		cub_file->dir_y = 0;
 		cub_file->plane_x = 0;
 		cub_file->plane_y = 0.66;
 	}
-	if (cub_file->map[y][x] == 'E') {
+	if (cub_file->map[y][x] == 'E')
+	{
 		cub_file->dir_x = 1;
 		cub_file->dir_y = 0;
 		cub_file->plane_x = 0;
