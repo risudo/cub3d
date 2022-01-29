@@ -19,7 +19,6 @@ int	destroy_and_exit(void *arg)
 	t_game	*game;
 
 	game = (t_game *)arg;
-	game->mlx;
 	mlx_destroy_window(game->mlx, game->win);
 	destroy_textures(game);
 	if (game->mlx)
@@ -27,6 +26,6 @@ int	destroy_and_exit(void *arg)
 		mlx_destroy_display(game->mlx);
 		free(game->mlx);
 	}
-	exit(1);
+	exit(0);
 	return (0);
 }

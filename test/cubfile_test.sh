@@ -9,7 +9,19 @@ execute() {
 	echo
 }
 
-gcc -Wall -Wextra -Werror -g -I../include/ cubfile_test.c ../src/utils/* ../src/cubfile/read_file.c ../src/cubfile/init_cubfile.c ../src/cubfile/validate_map.c ../src/cubfile/is_player_pos.c -o testcubfile.out
+
+UTILS="../src/utils/*.c"
+CUBFILE=" ../src/cubfile/get_color.c"
+CUBFILE+=" ../src/cubfile/read_file.c"
+CUBFILE+=" ../src/cubfile/init_player.c"
+CUBFILE+=" ../src/cubfile/validate_map.c"
+CUBFILE+=" ../src/cubfile/skip_empty_line.c"
+CUBFILE+=" ../src/cubfile/get_path_to_texture.c"
+CUBFILE+=" ../src/cubfile/init_cubfile.c"
+CUBFILE+=" ../src/cubfile/init_player_dir.c"
+CUBFILE+=" ../src/cubfile/init_player_pos.c"
+
+gcc -Wall -Wextra -Werror -g -I../include/ cubfile_test.c $UTILS $CUBFILE -o testcubfile.out
 
 if [ $? != 0 ]; then
 	exit 1;
