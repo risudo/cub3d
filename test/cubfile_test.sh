@@ -9,7 +9,7 @@ test() {
 	echo
 }
 
-gcc -I../include/ cubfile_test.c ../src/utils/* ../src/cubfile/read_file.c ../src/cubfile/init_cubfile.c ../src/cubfile/validate_map.c -o testcubfile.out
+gcc -Wall -Wextra -Werror -g -I../include/ cubfile_test.c ../src/utils/* ../src/cubfile/read_file.c ../src/cubfile/init_cubfile.c ../src/cubfile/validate_map.c -o testcubfile.out
 
 while getopts e OPT
 do
