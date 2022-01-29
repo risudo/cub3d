@@ -32,16 +32,17 @@ static void	check_arg(int argc)
 	}
 }
 
-static void	init(t_game *game, char *cubfile)
+static void	init(t_game *game, char *file_path)
 {
 	t_cub_file	cub_file;
 	char		**file_content;
 
-	file_content = read_file(cubfile);
+	file_content = read_file(file_path);
 	init_cub_file(&cub_file, file_content);
 	clear_string_array(file_content);
 	init_game(game, &cub_file);
 	init_textures(game, &cub_file);
+	clear_path_to_texture(&cub_file);
 }
 
 static void	start_game(t_game *game)
