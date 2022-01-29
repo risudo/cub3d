@@ -1,4 +1,5 @@
 #include "cub3d.h"
+#include "utils.h"
 #include "mlx.h"
 #include <fcntl.h>
 #include <math.h>

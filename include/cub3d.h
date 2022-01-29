@@ -124,7 +124,7 @@ void		init_game(t_game *game, t_cub_file *cub_file);
 int			game_loop(t_game *game);
 int			destroy_and_exit(void *arg);
 
-bool		init_cub_file(t_cub_file *cub_file, char **file_content);
+void		init_cub_file(t_cub_file *cub_file, char **file_content);
 char		**read_file(char *filepath);
 
 #endif /* CUB3D_H */

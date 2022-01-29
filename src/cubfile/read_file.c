@@ -9,6 +9,7 @@ char **read_file_rec(int fd, size_t idx)
 	char	*line;
 	int		is_end;
 
+	ret = NULL;
 	is_end = get_next_line(fd, &line);
 	if (is_end == GNL_ERROR)
 		xput_error("gnl");
