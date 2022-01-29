@@ -1,4 +1,6 @@
 #include <fcntl.h>
+#include <string.h>
+#include <errno.h>
 #include "utils.h"
 
 char	**read_file_rec(int fd, size_t idx)
@@ -10,7 +12,7 @@ char	**read_file_rec(int fd, size_t idx)
 	ret = NULL;
 	is_end = get_next_line(fd, &line);
 	if (is_end == GNL_ERROR)
-		xput_error("gnl");
+		xput_error(strerror(errno));
 	else if (is_end == GNL_EOF)
 	{
 		ret = xmalloc(sizeof(*ret) * (idx + 2));
