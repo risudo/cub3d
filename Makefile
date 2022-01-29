@@ -26,6 +26,7 @@ SRCS =	main.c \
 		get_next_line.c \
 		read_file.c \
 		init_cubfile.c \
+		validate_map.c \
 		calc_coordinates_of_wall.c \
 		calc_wall_height.c \
 		dda.c \
@@ -44,7 +45,10 @@ SRCS =	main.c \
 		ft_strlen.c \
 		ft_strncmp.c \
 		xmalloc.c \
-		xput_error.c
+		xput_error.c \
+		clear_string_array.c \
+		duplicate_map.c \
+		is_player_pos.c
 
 
 # init_textures.c 

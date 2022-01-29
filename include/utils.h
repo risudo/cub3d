@@ -35,5 +35,7 @@ char	**ft_split(char *s, char c);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strdup(const char *str);
 void	xput_error(char *str);
+void	clear_string_array(char **arr);
+char **duplicate_map(char **map);
 
 #endif

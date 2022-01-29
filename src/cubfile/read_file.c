@@ -3,12 +3,13 @@
 #include <fcntl.h>
 #include "utils.h"
 
-char **read_file_rec(int fd, size_t idx)
+char	**read_file_rec(int fd, size_t idx)
 {
 	char	**ret;
 	char	*line;
 	int		is_end;
 
+	ret = NULL;
 	is_end = get_next_line(fd, &line);
 	if (is_end == GNL_ERROR)
 		xput_error("gnl");
@@ -25,10 +26,10 @@ char **read_file_rec(int fd, size_t idx)
 	return (ret);
 }
 
-char **read_file(char *filepath)
+char	**read_file(char *filepath)
 {
-	int	fd;
-	char **file_content;
+	int		fd;
+	char	**file_content;
 
 	fd = open(filepath, O_RDONLY);
 	file_content = read_file_rec(fd, 0);

@@ -1,18 +1,8 @@
 #include <libc.h>
 #include <stdbool.h>
 
-#include "../../include/cubfile.h"
-#include "../../include/utils.h"
-
-void	clear_string_array(char **arr)
-{
-	size_t	idx;
-
-	idx = 0;
-	while (arr && arr[idx])
-		free(arr[idx++]);
-	free(arr);
-}
+#include "cubfile.h"
+#include "utils.h"
 
 char	*get_path_to_texture(char *direction, char *line)
 {
@@ -20,132 +10,94 @@ char	*get_path_to_texture(char *direction, char *line)
 	char	*ret;
 
 	if (!line)
-		return (NULL);
+		xput_error("path to texture");
 	splited = ft_split(line, ' ');
-	if (!splited)
-		return (NULL);
-	if (*splited && !ft_strncmp(*splited, direction, 3)
-			&& splited[1] && !splited[2])
-		ret = ft_strdup(splited[1]);
-	else
-		ret = NULL;
+	if (!splited || !*splited || \
+		ft_strncmp(*splited, direction, 3) || \
+		!splited[1] || splited[2])
+	{
+		xput_error("path to texture");
+	}
+	ret = ft_strdup(splited[1]);
 	clear_string_array(splited);
 	return (ret);
 }
 
-void	clear_cub_file(t_cub_file *cub_file)
+unsigned char	cub_atoi(char **str, char end)
 {
-	free(cub_file->north_wall_path);
-	free(cub_file->south_wall_path);
-	free(cub_file->western_wall_path);
-	free(cub_file->east_wall_path);
-	clear_string_array(cub_file->map);
-}
-
-unsigned char	cub_atoi(char **str, char end, bool *is_error)
-{
-	unsigned char ret;
+	unsigned char	ret;
 
 	ret = 0;
-	while (**str >= '0' && **str <= '9') {
+	while (**str >= '0' && **str <= '9')
+	{
 		if ((ret * 10 + (**str - '0')) / 10 != ret)
-			return ((unsigned char)(*is_error = true));
+			xput_error("atoi");
 		ret = ret * 10 + (**str - '0');
 		++*str;
 	}
 	if (**str != end)
-		return ((unsigned char)(*is_error = true));
+		xput_error("atoi");
 	++*str;
 	return (ret);
 }
 
-unsigned int	get_color(char *line, char identifier, bool *is_error)
+unsigned int	get_color(char *line, char identifier)
 {
 	unsigned char	red;
 	unsigned char	grean;
 	unsigned char	blue;
 	char			**splited;
+	char			*head;
 
-	splited= ft_split(line, ' ');
-	*is_error = false;
-	if (splited[0][0] != identifier || \
+	splited = ft_split(line, ' ');
+	if (!*splited || splited[0][0] != identifier || \
 		ft_strlen(splited[0]) != 1 || \
 		!splited[1] || splited[2])
-		return ((unsigned int)(*is_error = true));//
-	red = cub_atoi(&splited[1], ',', is_error);
-	if (*is_error)
-		return ((unsigned int)*is_error);
-	grean = cub_atoi(&splited[1], ',', is_error);
-	if (*is_error)
-		return ((unsigned int)*is_error);
-	blue = cub_atoi(&splited[1], '\0', is_error);
-	if (*is_error)
-		return ((unsigned int)*is_error);
+	{
+		xput_error("get color");
+	}
+	head = splited[1];
+	red = cub_atoi(&splited[1], ',');
+	grean = cub_atoi(&splited[1], ',');
+	blue = cub_atoi(&splited[1], '\0');
+	free(splited[0]);
+	free(head);
+	free(splited);
 	return (red << 16 | grean << 8 | blue);
 }
 
-void	init_player(t_cub_file *cub_file)
+void	init_player_dir(t_cub_file *cub_file)
 {
-	size_t	x;
-	size_t	y;
+	const size_t	x = cub_file->pos_x;
+	const size_t	y = cub_file->pos_y;
 
-	y = 0;
-	while (cub_file->map[y]) {
-		x = 0;
-		while (cub_file->map[y][x]) {
-			if (cub_file->map[y][x] == 'N' || cub_file->map[y][x] == 'S' ||
-				cub_file->map[y][x] == 'D' || cub_file->map[y][x] == 'E') {
-				cub_file->posX = y;
-				cub_file->posY = x;
-				if (cub_file->map[y][x] == 'N') {
-					cub_file->dir_x = 0;
-					cub_file->dir_y = -1;
-					cub_file->plane_x = -0.66;
-					cub_file->plane_y = 0;
-				}
-				if (cub_file->map[y][x] == 'S') {
-					cub_file->dir_x = 0;
-					cub_file->dir_y = 1;
-					cub_file->plane_x = 0.66;
-					cub_file->plane_y = 0;
-				}
-				if (cub_file->map[y][x] == 'W') {
-					cub_file->dir_x = -1;
-					cub_file->dir_y = 0;
-					cub_file->plane_x = 0;
-					cub_file->plane_y = 0.66;
-				}
-				if (cub_file->map[y][x] == 'E') {
-					cub_file->dir_x = 1;
-					cub_file->dir_y = 0;
-					cub_file->plane_x = 0;
-					cub_file->plane_y = -0.66;
-				}
-				break;
-			}
-			++x;
-		}
-		if (cub_file->map[y][x])
-			break;
-		++y;
-	}
-}
-
-void	check_wall_path(char *wall_path, t_cub_file *cubfile)
-{
-	if (!wall_path)
+	if (cub_file->map[y][x] == 'N')
 	{
-		clear_cub_file(cubfile);
-		xput_error("check_wall_path");
+		cub_file->dir_x = 0;
+		cub_file->dir_y = -1;
+		cub_file->plane_x = -0.66;
+		cub_file->plane_y = 0;
 	}
-}
-
-void check_get_color_error(bool error, t_cub_file *cubfile)
-{
-	if (error)
+	if (cub_file->map[y][x] == 'S')
 	{
-		clear_cub_file(cubfile);
-		xput_error("check_get_color_error");
+		cub_file->dir_x = 0;
+		cub_file->dir_y = 1;
+		cub_file->plane_x = 0.66;
+		cub_file->plane_y = 0;
+	}
+	if (cub_file->map[y][x] == 'W')
+	{
+		cub_file->dir_x = -1;
+		cub_file->dir_y = 0;
+		cub_file->plane_x = 0;
+		cub_file->plane_y = 0.66;
+	}
+	if (cub_file->map[y][x] == 'E')
+	{
+		cub_file->dir_x = 1;
+		cub_file->dir_y = 0;
+		cub_file->plane_x = 0;
+		cub_file->plane_y = -0.66;
 	}
 }
 
@@ -155,32 +107,44 @@ void	skip_empty_line(char **file_content, size_t *idx)
 		(*idx)++;
 }
 
-bool	init_cub_file(t_cub_file *cub_file, char **file_content)
+void	set_player_pos(char **map, int *player_pos_x, int *player_pos_y)
+{
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (is_player_pos(map[i][j]))
+			{
+				*player_pos_x = j;
+				*player_pos_y = i;
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
+void	init_cub_file(t_cub_file *cub_file, char **file_content)
 {
 	size_t	idx;
-	bool	error;
 
-	*cub_file = (t_cub_file){};
 	idx = 0;
 	cub_file->north_wall_path = get_path_to_texture("NO", file_content[idx++]);
-	check_wall_path(cub_file->north_wall_path, cub_file);
 	cub_file->south_wall_path = get_path_to_texture("SO", file_content[idx++]);
-	check_wall_path(cub_file->south_wall_path, cub_file);
-	cub_file->western_wall_path = get_path_to_texture("WE", file_content[idx++]);
-	check_wall_path(cub_file->western_wall_path, cub_file);
+	cub_file->west_wall_path = get_path_to_texture("WE", file_content[idx++]);
 	cub_file->east_wall_path = get_path_to_texture("EA", file_content[idx++]);
-	check_wall_path(cub_file->east_wall_path, cub_file);
-
 	skip_empty_line(file_content, &idx);
-
-	cub_file->sky_color = get_color(file_content[idx++], 'F', &error);
-	check_get_color_error(error, cub_file);
-	cub_file->ground_color = get_color(file_content[idx++], 'C', &error);
-	check_get_color_error(error, cub_file);
-
+	cub_file->sky_color = get_color(file_content[idx++], 'F');
+	cub_file->ground_color = get_color(file_content[idx++], 'C');
 	skip_empty_line(file_content, &idx);
-	cub_file->map = &file_content[idx];
-	init_player(cub_file);
-//	validate_map();
-	return (false);
+	cub_file->map = duplicate_map(&file_content[idx]);
+	set_player_pos(cub_file->map, &cub_file->pos_x, &cub_file->pos_y);
+	validate_map(cub_file->map, cub_file->pos_x, cub_file->pos_y);
+	init_player_dir(cub_file);
+	cub_file->map[cub_file->pos_y][cub_file->pos_x] = '0';
 }
