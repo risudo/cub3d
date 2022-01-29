@@ -7,7 +7,7 @@ MLX_DIR = ./minilibx-linux/
 
 INC = -I$(X11) -I$(MLX_DIR) -I$(INCDIR)
 
-CFLAGS = $(INC) -g -fsanitize=address
+CFLAGS = $(INC) -Wall -Wextra -Werror
 
 LIBS =  -L$(MLX_DIR) -lmlx_Darwin -L$(X11) -lXext -lX11 -lm
 
@@ -54,7 +54,6 @@ SRCS =	main.c \
 		xput_error.c \
 		clear_string_array.c \
 		duplicate_map.c \
-		is_player_pos.c \
 
 
 # init_textures.c 

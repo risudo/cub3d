@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "game.h"
 
 unsigned int	get_pixel_color(t_img *img, int x, int y)
 {

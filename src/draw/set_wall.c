@@ -1,4 +1,5 @@
-#include "cub3d.h"
+#include "draw.h"
+#include "game.h"
 
 void	set_wall(t_game *game, t_ray *ray, t_texture *texture)
 {

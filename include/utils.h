@@ -1,15 +1,14 @@
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-
-# include <stdlib.h>
-# include <unistd.h>
-
+#ifndef UTILS_H
+# define UTILS_H
 # define GNL_BUFFER_SIZE 256
 # define GNL_ERROR -1
 # define GNL_EOF 0
 # define GNL_CONTINUE 1
 
-typedef struct	s_gnl
+# include <stdlib.h>
+# include <unistd.h>
+
+typedef struct s_gnl
 {
 	char	*ptr;
 	char	*read_str;
@@ -36,6 +35,6 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strdup(const char *str);
 void	xput_error(char *str);
 void	clear_string_array(char **arr);
-char **duplicate_map(char **map);
+char	**duplicate_map(char **map);
 
 #endif

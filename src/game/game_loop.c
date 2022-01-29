@@ -1,4 +1,7 @@
-#include "cub3d.h"
+#include "game.h"
+#include "define.h"
+#include "draw.h"
+#include <math.h>
 
 static void	rotate_player(t_game *game, double angle)
 {
@@ -13,7 +16,7 @@ static void	rotate_player(t_game *game, double angle)
 	game->plane_y = oldPlaneX * sin(angle) + game->plane_y * cos(angle);
 }
 
-static bool is_floor(int c)
+static bool	is_floor(int c)
 {
 	return (c == 'N' || \
 			c == 'S' || \

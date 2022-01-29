@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "game.h"
 #include "mlx.h"
 #include <stdlib.h>
 
