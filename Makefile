@@ -26,7 +26,13 @@ SRCS =	main.c \
 		get_next_line.c \
 		read_file.c \
 		init_cubfile.c \
+		init_player.c \
 		validate_map.c \
+		get_path_to_texture.c \
+		get_color.c \
+		skip_empty_line.c \
+		init_player_dir.c \
+		init_player_pos.c \
 		calc_coordinates_of_wall.c \
 		calc_wall_height.c \
 		dda.c \
@@ -48,7 +54,7 @@ SRCS =	main.c \
 		xput_error.c \
 		clear_string_array.c \
 		duplicate_map.c \
-		is_player_pos.c
+		is_player_pos.c \
 
 
 # init_textures.c 

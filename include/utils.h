@@ -9,7 +9,7 @@
 # define GNL_EOF 0
 # define GNL_CONTINUE 1
 
-typedef struct s_gnl
+typedef struct	s_gnl
 {
 	char	*ptr;
 	char	*read_str;
