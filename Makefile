@@ -21,42 +21,48 @@ VPATH = src:\
 		src/utils:\
 		src/cubfile
 
-SRCS =	main.c \
-		get_next_line_utils.c \
-		get_next_line.c \
-		read_file.c \
-		init_cubfile.c \
-		init_player.c \
-		validate_map.c \
-		get_path_to_texture.c \
-		get_color.c \
-		skip_empty_line.c \
-		init_player_dir.c \
-		init_player_pos.c \
-		calc_coordinates_of_wall.c \
-		calc_wall_height.c \
-		dda.c \
-		draw_line.c \
-		draw_screen.c \
-		init_ray.c \
-		pixel_color.c \
-		set_wall.c \
-		key_hook.c \
-		init_textures.c \
-		init_game.c \
-		game_loop.c \
-		destroy_and_exit.c \
-		ft_split.c \
-		ft_strdup.c \
-		ft_strlen.c \
-		ft_strncmp.c \
-		xmalloc.c \
-		xput_error.c \
-		clear_string_array.c \
-		duplicate_map.c \
+UTILS	=	duplicate_map.c \
+			get_next_line_utils.c \
+			ft_strlen.c \
+			get_next_line.c \
+			xput_error.c \
+			clear_string_array.c \
+			ft_split.c \
+			ft_strncmp.c \
+			xmalloc.c \
+			ft_strdup.c
+
+GAME	=	game_loop.c \
+			init_game.c \
+			destroy_and_exit.c \
+			key_hook.c \
+			init_textures.c
+
+CUBFILE	=	init_cubfile.c \
+			read_file.c \
+			get_color.c \
+			skip_empty_line.c \
+			get_path_to_texture.c \
+			init_player.c \
+			init_player_pos.c \
+			validate_map.c \
+			init_player_dir.c
+
+DRAW	=	dda.c \
+			calc_coordinates_of_wall.c \
+			pixel_color.c \
+			draw_line.c \
+			set_wall.c \
+			calc_wall_height.c \
+			init_ray.c \
+			draw_screen.c
 
 
-# init_textures.c 
+SRCS	=	$(UTILS) \
+			$(GAME) \
+			$(CUBFILE) \
+			$(DRAW) \
+			main.c
 
 
 OBJS = $(addprefix $(OBJDIR)/, $(notdir $(SRCS:.c=.o)))
