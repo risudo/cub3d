@@ -35,9 +35,15 @@ int	key_press_hook(int key_code, t_game *game)
 	if (key_code == KEY_ESC)
 		destroy_and_exit(game);
 	if (is_move_key(key_code))
+	{
 		game->is_moving = true;
+		game->is_rotating = false;
+	}
 	if (is_rotate_key(key_code))
+	{
+		game->is_moving = false;
 		game->is_rotating = true;
+	}
 	return (0);
 }
 
