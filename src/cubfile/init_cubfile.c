@@ -1,6 +1,3 @@
-#include <libc.h>
-#include <stdbool.h>
-
 #include "cubfile.h"
 #include "utils.h"
 

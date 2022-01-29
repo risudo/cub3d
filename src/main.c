@@ -1,6 +1,8 @@
-#include "cub3d.h"
 #include "utils.h"
 #include "mlx.h"
+#include "define.h"
+#include "cubfile.h"
+#include "game.h"
 /*
 #include <stdio.h>
 
@@ -33,7 +35,7 @@ static void	check_arg(int argc)
 static void	init(t_game *game, char *cubfile)
 {
 	t_cub_file	cub_file;
-	char	**file_content;
+	char		**file_content;
 
 	file_content = read_file(cubfile);
 	init_cub_file(&cub_file, file_content);

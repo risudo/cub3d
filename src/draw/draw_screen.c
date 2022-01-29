@@ -1,11 +1,12 @@
-#include "cub3d.h"
 #include "mlx.h"
+#include "draw.h"
+#include "game.h"
 
 int	draw_screen(t_game *game)
 {
-	t_ray	ray;
+	t_ray		ray;
 	t_texture	texture;
-	int		x;
+	int			x;
 
 	x = 0;
 	while (x < game->screen_width)

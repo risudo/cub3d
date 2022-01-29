@@ -1,15 +1,16 @@
 #include "draw.h"
-#include "cub3d.h"
+#include "define.h"
+#include "game.h"
 #include <math.h>
 
 static void	set_deltaDist(t_ray *ray)
 {
 	if (ray->dir_x == 0)
-		ray->delta_dist_x = 1e30;
+		ray->delta_dist_x = INF;
 	else
 		ray->delta_dist_x = fabs(1 / ray->dir_x);
 	if (ray->dir_y == 0)
-		ray->delta_dist_y = 1e30;
+		ray->delta_dist_y = INF;
 	else
 		ray->delta_dist_y = fabs(1 / ray->dir_y);
 }

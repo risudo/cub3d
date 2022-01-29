@@ -1,9 +1,9 @@
 #ifndef CUBFILE_H
-#define CUBFILE_H
-#include <stdbool.h>
-#include <stdio.h>
+# define CUBFILE_H
+# include <stdbool.h>
+# include <stdio.h>
 
-typedef struct	s_cub_file {
+typedef struct s_cub_file {
 	char			*north_wall_path;
 	char			*south_wall_path;
 	char			*west_wall_path;
@@ -11,7 +11,7 @@ typedef struct	s_cub_file {
 	unsigned int	sky_color;
 	unsigned int	ground_color;
 	char			**map;
-	int				pos_x; //? size_tにしたら動かなくなるのなんで？？
+	int				pos_x;
 	int				pos_y;
 	double			dir_x;
 	double			dir_y;
@@ -19,7 +19,7 @@ typedef struct	s_cub_file {
 	double			plane_y;
 }	t_cub_file;
 
-typedef struct	s_dir
+typedef struct s_dir
 {
 	double	dir_x;
 	double	dir_y;

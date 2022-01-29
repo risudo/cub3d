@@ -2,9 +2,9 @@
 #include <stdio.h>
 #include <limits.h>
 
-static unsigned char	cub_atoi(char **str, char end)
+static uint8_t	cub_atoi(char **str, char end)
 {
-	unsigned int	ret;
+	uint32_t	ret;
 
 	ret = 0;
 	while (**str >= '0' && **str <= '9')
@@ -20,13 +20,13 @@ static unsigned char	cub_atoi(char **str, char end)
 	return (ret);
 }
 
-unsigned int	get_color(char *line, char identifier)
+uint32_t	get_color(char *line, char identifier)
 {
-	unsigned char	red;
-	unsigned char	grean;
-	unsigned char	blue;
-	char			**splited;
-	char			*head;
+	uint8_t	red;
+	uint8_t	grean;
+	uint8_t	blue;
+	char	**splited;
+	char	*head;
 
 	splited = ft_split(line, ' ');
 	if (!*splited || splited[0][0] != identifier || \

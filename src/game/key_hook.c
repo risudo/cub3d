@@ -1,6 +1,22 @@
-#include "cub3d.h"
 #include "mlx.h"
+#include "game.h"
+#include "define.h"
 #include <stdlib.h>
+#include <math.h>
+
+static bool	is_move_key(int key_code)
+{
+	return (key_code == KEY_W || \
+		key_code == KEY_A || \
+		key_code == KEY_S || \
+		key_code == KEY_D);
+}
+
+static bool	is_rotate_key(int key_code)
+{
+	return (key_code == KEY_LEFT || \
+		key_code == KEY_RIGHT);
+}
 
 int	key_press_hook(int key_code, t_game *game)
 {
@@ -18,22 +34,18 @@ int	key_press_hook(int key_code, t_game *game)
 		game->move_dir = -ROTATE_SPEED;
 	if (key_code == KEY_ESC)
 		destroy_and_exit(game);
-	if (key_code == KEY_W || \
-		key_code == KEY_A || \
-		key_code == KEY_S || \
-		key_code == KEY_D)
+	if (is_move_key(key_code))
 		game->is_moving = true;
-	if (key_code == KEY_LEFT || \
-		key_code == KEY_RIGHT)
+	if (is_rotate_key(key_code))
 		game->is_rotating = true;
 	return (0);
 }
 
 int	key_release_hook(int key_code, t_game *game)
 {
-	if (game->is_moving)
+	if (game->is_moving && is_move_key(key_code))
 		game->is_moving = false;
-	if (game->is_rotating)
+	if (game->is_rotating && is_rotate_key(key_code))
 		game->is_rotating = false;
 	return (0);
 }

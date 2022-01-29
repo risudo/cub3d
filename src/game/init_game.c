@@ -1,5 +1,6 @@
-#include "cub3d.h"
+#include "game.h"
 #include "mlx.h"
+#include "cubfile.h"
 
 void	init_game(t_game *game, t_cub_file *cub_file)
 {
@@ -15,8 +16,8 @@ void	init_game(t_game *game, t_cub_file *cub_file)
 	game->screen.addr = \
 		mlx_get_data_addr(game->screen.img, &game->screen.bits_per_pixel, \
 						&game->screen.line_length, &game->screen.endian);
-	game->pos_x = cub_file->posX;
-	game->pos_y = cub_file->posY;
+	game->pos_x = cub_file->pos_x;
+	game->pos_y = cub_file->pos_y;
 	game->dir_x = cub_file->dir_x;
 	game->dir_y = cub_file->dir_y;
 	game->plane_x = cub_file->plane_x;
