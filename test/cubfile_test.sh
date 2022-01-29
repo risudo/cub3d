@@ -3,13 +3,17 @@
 GREEN="\033[32m"
 RESET="\033[0m"
 
-test() {
+execute() {
 	echo -e $GREEN "<" $1 ">"$RESET
 	./testcubfile.out $1
 	echo
 }
 
-gcc -Wall -Wextra -Werror -g -I../include/ cubfile_test.c ../src/utils/* ../src/cubfile/read_file.c ../src/cubfile/init_cubfile.c ../src/cubfile/validate_map.c -o testcubfile.out
+gcc -Wall -Wextra -Werror -g -I../include/ cubfile_test.c ../src/utils/* ../src/cubfile/read_file.c ../src/cubfile/init_cubfile.c ../src/cubfile/validate_map.c ../src/cubfile/is_player_pos.c -o testcubfile.out
+
+if [ $? != 0 ]; then
+	exit 1;
+fi
 
 while getopts e OPT
 do
@@ -20,7 +24,7 @@ done
 
 cubfiles="../cubfiles/*"
 for filepath in $cubfiles; do
-	test $filepath
+	execute $filepath
 done
 
 rm testcubfile.out
