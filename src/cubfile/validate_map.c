@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include "utils.h"
+#include "cubfile.h"
 
-static bool flood_fill(char **map, int x, int y)
+static bool	flood_fill(char **map, int x, int y)
 {
 	if (x < 0 || y < 0 || !map[y] || map[y][x] == ' ' || map[y][x] == '\0')
 	{
@@ -17,13 +18,8 @@ static bool flood_fill(char **map, int x, int y)
 		return (false);
 	}
 	map[y][x] = 'x';
-	return (flood_fill(map, x + 1, y) || flood_fill(map, x - 1, y) 
-			|| flood_fill(map, x, y + 1) || flood_fill(map, x, y - 1));
-}
-
-static bool	is_player_pos(char c)
-{
-	return (c == 'N' || c == 'S' || c == 'W' || c == 'E');
+	return (flood_fill(map, x + 1, y) || flood_fill(map, x - 1, y)
+		|| flood_fill(map, x, y + 1) || flood_fill(map, x, y - 1));
 }
 
 static bool	is_valid_char(char c)
@@ -31,7 +27,7 @@ static bool	is_valid_char(char c)
 	return (c == '0' || c == '1' || c == ' ' || is_player_pos(c));
 }
 
-int	check_map_char(char **map)
+static int	check_map_char(char **map)
 {
 	size_t	i;
 	size_t	j;
@@ -61,30 +57,7 @@ int	check_map_char(char **map)
 	return (0);
 }
 
-void	set_player_pos(char **map, int *player_pos_x, int *player_pos_y)
-{
-	size_t	i;
-	size_t	j;
-
-	i = 0;
-	while (map[i])
-	{
-		j = 0;
-		while (map[i][j])
-		{
-			if (is_player_pos(map[i][j]))
-			{
-				*player_pos_x = j;
-				*player_pos_y = i;
-			}
-			j++;
-		}
-		i++;
-	}
-
-}
-
-int	validate_map(char **map, int *player_pos_x, int *player_pos_y)
+int	validate_map(char **map, int player_pos_x, int player_pos_y)
 {
 	char	**copy;
 	bool	error;
@@ -92,8 +65,7 @@ int	validate_map(char **map, int *player_pos_x, int *player_pos_y)
 	if (!map[0] || check_map_char(map) == -1)
 		xput_error("map");
 	copy = duplicate_map(map);
-	set_player_pos(map, player_pos_x, player_pos_y);
-	error = flood_fill(copy, *player_pos_x, *player_pos_y);
+	error = flood_fill(copy, player_pos_x, player_pos_y);
 	clear_string_array(copy);
 	if (error)
 		xput_error("map");

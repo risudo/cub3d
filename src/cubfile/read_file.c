@@ -3,7 +3,7 @@
 #include <fcntl.h>
 #include "utils.h"
 
-char **read_file_rec(int fd, size_t idx)
+char	**read_file_rec(int fd, size_t idx)
 {
 	char	**ret;
 	char	*line;
@@ -26,10 +26,10 @@ char **read_file_rec(int fd, size_t idx)
 	return (ret);
 }
 
-char **read_file(char *filepath)
+char	**read_file(char *filepath)
 {
-	int	fd;
-	char **file_content;
+	int		fd;
+	char	**file_content;
 
 	fd = open(filepath, O_RDONLY);
 	file_content = read_file_rec(fd, 0);

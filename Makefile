@@ -47,7 +47,8 @@ SRCS =	main.c \
 		xmalloc.c \
 		xput_error.c \
 		clear_string_array.c \
-		duplicate_map.c
+		duplicate_map.c \
+		is_player_pos.c
 
 
 # init_textures.c 
