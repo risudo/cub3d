@@ -1,10 +1,11 @@
 #include "mlx.h"
 #include "game.h"
 #include "cubfile.h"
+#include "utils.h"
 
 void	init_texture(t_img *img, void *mlx, char *path)
 {
-	img->img = mlx_xpm_file_to_image(mlx, path, &img->width, &img->height);
+	img->img = mlx_xxpm_file_to_image(mlx, path, &img->width, &img->height);
 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, \
 								&img->line_length, &img->endian);
 }
