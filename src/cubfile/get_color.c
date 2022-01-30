@@ -1,6 +1,7 @@
 #include "utils.h"
 #include <stdio.h>
 #include <limits.h>
+#include <stdint.h>
 
 static uint8_t	cub_atoi(char **str, char end)
 {

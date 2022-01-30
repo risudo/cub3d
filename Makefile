@@ -9,7 +9,13 @@ INC = -I$(X11) -I$(MLX_DIR) -I$(INCDIR)
 
 CFLAGS = $(INC) -Wall -Wextra -Werror
 
-LIBS =  -L$(MLX_DIR) -lmlx_Darwin -L$(X11) -lXext -lX11 -lm
+ifeq ($(shell uname), Darwin)
+	MLX = mlx_Darwin
+else
+	MLX = mlx
+endif
+
+LIBS =  -L$(MLX_DIR) -l$(MLX) -L$(X11) -lXext -lX11 -lm
 
 INCDIR	=	./include
 OBJDIR	=	./objs
