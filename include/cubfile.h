@@ -36,4 +36,5 @@ void			skip_empty_line(char **file_content, size_t *idx);
 void			init_player(t_cub_file *cub_file);
 void			init_player_pos(t_cub_file *cub_file);
 void			init_player_dir(t_cub_file *cub_file);
+void			clear_path_to_texture(t_cub_file *cubfile);
 #endif

@@ -46,7 +46,8 @@ CUBFILE	=	init_cubfile.c \
 			init_player.c \
 			init_player_pos.c \
 			validate_map.c \
-			init_player_dir.c
+			init_player_dir.c \
+			clear_path_to_texture.c
 
 DRAW	=	dda.c \
 			calc_coordinates_of_wall.c \
