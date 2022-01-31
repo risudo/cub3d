@@ -99,4 +99,7 @@ fclean: clean
 
 re: fclean all
 
+norm:
+	norminette ./src ./include
+
 .PHONY: all clean fclean re
