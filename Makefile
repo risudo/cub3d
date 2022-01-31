@@ -102,4 +102,7 @@ re: fclean all
 norm:
 	norminette ./src ./include
 
+nm:
+	nm -u cub3D | grep -E "^_" | grep -Ev "^_X" | grep -Ev "^__" | cut -b 2- | grep -Ev "^(open|close|read|write|printf|malloc|free|perror|strerror|exit|sin|cos)" | xargs -I{} bash -c "echo '[[' {} ']]'; grep {} src/*/* src/main.c"
+
 .PHONY: all clean fclean re
