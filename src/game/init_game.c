@@ -1,17 +1,18 @@
 #include "game.h"
 #include "mlx.h"
 #include "cubfile.h"
+#include "utils.h"
 
 void	init_game(t_game *game, t_cub_file *cub_file)
 {
 	game->screen_width = 640;
 	game->screen_height = 480;
-	game->mlx = mlx_init();
+	game->mlx = mlx_xinit();
 	game->win = \
-		mlx_new_window(game->mlx, \
+		mlx_xnew_window(game->mlx, \
 		game->screen_width, game->screen_height, "cub3d");
 	game->screen.img = \
-		mlx_new_image(game->mlx, \
+		mlx_xnew_image(game->mlx, \
 		game->screen_width, game->screen_height);
 	game->screen.addr = \
 		mlx_get_data_addr(game->screen.img, &game->screen.bits_per_pixel, \

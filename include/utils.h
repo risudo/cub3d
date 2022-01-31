@@ -37,4 +37,9 @@ void	xput_error(char *str);
 void	clear_string_array(char **arr);
 char	**duplicate_map(char **map);
 
+void	*mlx_xinit(void);
+void	*mlx_xnew_window(void *mlx_ptr, int x, int y, char *title);
+void	*mlx_xnew_image(void *mlx_ptr, int width, int height);
+void	*mlx_xxpm_file_to_image(void *mlx_ptr, \
+			char *filename, int *width, int *height);
 #endif

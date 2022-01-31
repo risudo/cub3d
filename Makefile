@@ -36,7 +36,11 @@ UTILS	=	duplicate_map.c \
 			ft_split.c \
 			ft_strncmp.c \
 			xmalloc.c \
-			ft_strdup.c
+			ft_strdup.c \
+			mlx_xinit.c \
+			mlx_xnew_window.c \
+			mlx_xnew_image.c \
+			mlx_xxpm_file_to_image.c
 
 GAME	=	game_loop.c \
 			init_game.c \
