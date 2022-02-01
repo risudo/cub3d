@@ -15,19 +15,19 @@ void	init_player_dir(t_cub_file *cub_file)
 
 	if (cub_file->map[y][x] == 'N')
 	{
-		set_player_dir(cub_file, (t_dir){0, -1, -0.66, 0});
+		set_player_dir(cub_file, (t_dir){-1, 0, 0, 0.66});
 	}
 	if (cub_file->map[y][x] == 'S')
 	{
-		set_player_dir(cub_file, (t_dir){0, 1, 0.66, 0});
+		set_player_dir(cub_file, (t_dir){1, 0, 0, -0.66});
 	}
 	if (cub_file->map[y][x] == 'W')
 	{
-		set_player_dir(cub_file, (t_dir){-1, 0, 0, 0.66});
+		set_player_dir(cub_file, (t_dir){0, -1, -0.66, 0});
 	}
 	if (cub_file->map[y][x] == 'E')
 	{
-		set_player_dir(cub_file, (t_dir){1, 0, 0, -0.66});
+		set_player_dir(cub_file, (t_dir){0, 1, 0.66, 0});
 	}
 	cub_file->map[y][x] = '0';
 }
