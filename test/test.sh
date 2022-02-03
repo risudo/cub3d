@@ -4,7 +4,6 @@ GREEN="\033[32m"
 RESET="\033[0m"
 ALIVE_TIME=1
 
-
 execute() {
 	(./cub3D $1 2>$2) & sleep ${ALIVE_TIME}
 
@@ -16,11 +15,11 @@ execute() {
 	rm $2
 }
 
-cd ..
-cubfiles="./cubfiles/error*"
+cubfiles=`find ./cubfiles -name "error*"`
 for filepath in $cubfiles; do
 	NAME=`basename $filepath`
 	execute $filepath $NAME &
 done
 wait
 killall cub3D 2>/dev/null
+echo -n
