@@ -1,28 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rsudo <rsudo@student.42tokyo.jp>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/03 17:35:14 by rsudo             #+#    #+#             */
+/*   Updated: 2022/02/03 17:35:41 by rsudo            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "utils.h"
 #include "mlx.h"
 #include "define.h"
 #include "cubfile.h"
 #include "game.h"
-/*
-#include <stdio.h>
-
-void	end(void)__attribute__((destructor));
-
-void	end(void)
-{
-	pid_t	current_pid;
-	char	cmd_str[50];
-	int		ret;
-
-	current_pid = getpid();
-	sprintf(cmd_str, "%s %d %s\n", "leaks", current_pid, ">> leaks.txt 2>&1");
-	ret = system(cmd_str);
-	if (ret)
-		printf("\e[31m!leak detected!\e[0m\n");
-	else
-		printf("leaks not found\n");
-}
-*/
 
 static void	check_arg(int argc, char **argv)
 {
