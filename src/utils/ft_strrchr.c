@@ -2,7 +2,7 @@
 
 char	*ft_strrchr(const char *s, int c)
 {
-	char *ret;
+	char	*ret;
 
 	ret = NULL;
 	while (*s)
