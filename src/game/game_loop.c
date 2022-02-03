@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   game_loop.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rsudo <rsudo@student.42tokyo.jp>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/03 17:34:39 by rsudo             #+#    #+#             */
+/*   Updated: 2022/02/03 17:34:39 by rsudo            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "game.h"
 #include "define.h"
 #include "draw.h"
@@ -27,13 +39,13 @@ static bool	is_floor(int c)
 
 static void	move_player(t_game *game, double angle)
 {
-	int	new_posX;
-	int	new_posY;
+	int	new_pos_x;
+	int	new_pos_y;
 
 	rotate_player(game, angle);
-	new_posX = (int)(game->pos_x - game->dir_x * MOVE_SPEED * 1.1);
-	new_posY = (int)(game->pos_y - game->dir_y * MOVE_SPEED * 1.1);
-	if (is_floor(game->map[new_posX][new_posY]))
+	new_pos_x = (int)(game->pos_x - game->dir_x * MOVE_SPEED * 1.1);
+	new_pos_y = (int)(game->pos_y - game->dir_y * MOVE_SPEED * 1.1);
+	if (is_floor(game->map[new_pos_x][new_pos_y]))
 	{
 		game->pos_x -= game->dir_x * MOVE_SPEED;
 		game->pos_y -= game->dir_y * MOVE_SPEED;
