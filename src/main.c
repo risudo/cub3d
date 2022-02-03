@@ -24,12 +24,15 @@ void	end(void)
 }
 */
 
-static void	check_arg(int argc)
+static void	check_arg(int argc, char **argv)
 {
+	char	*suffix;
+
 	if (argc != 2)
-	{
 		xput_error("invalid argument");
-	}
+	suffix = ft_strrchr(argv[1], '.');
+	if (!suffix || ft_strncmp(suffix, ".cub", 5))
+		xput_error("invalid file name");
 }
 
 static void	init(t_game *game, char *file_path)
@@ -58,7 +61,7 @@ int	main(int argc, char **argv)
 {
 	t_game		game;
 
-	check_arg(argc);
+	check_arg(argc, argv);
 	init(&game, argv[1]);
 	start_game(&game);
 }
