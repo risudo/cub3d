@@ -31,8 +31,8 @@ static void	move_player(t_game *game, double angle)
 	int	new_posY;
 
 	rotate_player(game, angle);
-	new_posX = (int)(game->pos_x - game->dir_x * MOVE_SPEED);
-	new_posY = (int)(game->pos_y - game->dir_y * MOVE_SPEED);
+	new_posX = (int)(game->pos_x - game->dir_x * MOVE_SPEED * 1.1);
+	new_posY = (int)(game->pos_y - game->dir_y * MOVE_SPEED * 1.1);
 	if (is_floor(game->map[new_posX][new_posY]))
 	{
 		game->pos_x -= game->dir_x * MOVE_SPEED;
