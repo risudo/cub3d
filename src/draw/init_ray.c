@@ -6,7 +6,7 @@
 /*   By: nyokota <nyokota@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 17:34:37 by rsudo             #+#    #+#             */
-/*   Updated: 2022/02/04 15:49:12 by nyokota          ###   ########.fr       */
+/*   Updated: 2022/02/04 16:22:42 by rsudo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	set_deltaDist(t_ray *ray)
 
 static void	set_step_and_sideDist(t_game *game, t_ray *ray)
 {
-	if (ray->dir_x > 0)
+	if (ray->dir_x < 0)
 	{
 		ray->step_x = -1;
 		ray->side_dist_x = (game->pos_x - ray->map_x) * ray->delta_dist_x;
