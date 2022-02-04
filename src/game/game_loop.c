@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rsudo <rsudo@student.42tokyo.jp>           +#+  +:+       +#+        */
+/*   By: nyokota <nyokota@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 17:34:39 by rsudo             #+#    #+#             */
-/*   Updated: 2022/02/03 17:34:39 by rsudo            ###   ########.fr       */
+/*   Updated: 2022/02/04 15:48:50 by nyokota          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	move_player(t_game *game, double angle)
 	rotate_player(game, angle);
 	new_pos_x = (int)(game->pos_x - game->dir_x * MOVE_SPEED * 1.1);
 	new_pos_y = (int)(game->pos_y - game->dir_y * MOVE_SPEED * 1.1);
-	if (is_floor(game->map[new_pos_x][new_pos_y]))
+	if (is_floor(game->map[new_pos_y][new_pos_x]))
 	{
 		game->pos_x -= game->dir_x * MOVE_SPEED;
 		game->pos_y -= game->dir_y * MOVE_SPEED;

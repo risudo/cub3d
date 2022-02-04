@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_hook.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rsudo <rsudo@student.42tokyo.jp>           +#+  +:+       +#+        */
+/*   By: nyokota <nyokota@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 17:34:41 by rsudo             #+#    #+#             */
-/*   Updated: 2022/02/03 17:34:41 by rsudo            ###   ########.fr       */
+/*   Updated: 2022/02/04 16:01:21 by nyokota          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,13 @@ static bool	is_rotate_key(int key_code)
 int	key_press_hook(int key_code, t_game *game)
 {
 	if (key_code == KEY_W)
-		game->move_dir = M_PI;
-	if (key_code == KEY_A)
-		game->move_dir = -M_PI_2;
-	if (key_code == KEY_S)
 		game->move_dir = 0.0;
-	if (key_code == KEY_D)
+	if (key_code == KEY_A)
 		game->move_dir = M_PI_2;
+	if (key_code == KEY_S)
+		game->move_dir = M_PI;
+	if (key_code == KEY_D)
+		game->move_dir = -M_PI_2;
 	if (key_code == KEY_LEFT)
 		game->move_dir = ROTATE_SPEED;
 	if (key_code == KEY_RIGHT)
