@@ -2,17 +2,18 @@
 
 GREEN="\033[32m"
 RESET="\033[0m"
-ALIVE_TIME=1
+ALIVE_TIME=2
 
 execute() {
-	(./cub3D $1 2>$2) & sleep ${ALIVE_TIME}
+	LOG="${2}.log"
+	rm -f $LOG
+	(./cub3D $1 2>${LOG}) & sleep ${ALIVE_TIME}
 
-	if [ -s $2 ]; then
-		echo -e "${GREEN}[[ ${2} ]]${RESET}\nOK"
+	if [ -s $LOG ]; then
+		echo -e "${GREEN}[[ ${2} ]]${RESET}\nOK\n"
 	else
-		echo -e "${GREEN}[[ ${2} ]]${RESET}\nNG"
+		echo -e "${GREEN}[[ ${2} ]]${RESET}\nNG\n"
 	fi
-	rm -f $2
 }
 
 cubfiles=`find ./cubfiles -name "error*"`
@@ -24,4 +25,14 @@ execute "no_such_file.cub" "no_such_file"
 execute 2>/dev/null
 wait
 killall cub3D 2>/dev/null
-echo -n
+
+rm -f log.txt
+for filepath in $cubfiles; do
+	NAME=`basename $filepath`
+	LOG="${NAME}.log"
+	echo -e "$GREEN [[ ${LOG} ]] $RESET" >> log.txt
+	cat $LOG >> log.txt
+	echo >> log.txt
+	rm $LOG
+done
+rm .log no_such_file.log
