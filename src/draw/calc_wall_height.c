@@ -6,7 +6,7 @@
 /*   By: nyokota <nyokota@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 17:34:35 by rsudo             #+#    #+#             */
-/*   Updated: 2022/02/04 15:58:23 by nyokota          ###   ########.fr       */
+/*   Updated: 2022/02/04 18:38:49 by rsudo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 void	calc_wall_height(t_game *game, t_ray *ray)
 {
-	if (ray->side == 0)
+	if (ray->side == X_SIDE)
 		ray->perp_wall_dist = (ray->side_dist_x - ray->delta_dist_x);
 	else
 		ray->perp_wall_dist = (ray->side_dist_y - ray->delta_dist_y);

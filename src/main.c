@@ -6,7 +6,7 @@
 /*   By: rsudo <rsudo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 17:35:14 by rsudo             #+#    #+#             */
-/*   Updated: 2022/02/03 17:35:41 by rsudo            ###   ########.fr       */
+/*   Updated: 2022/02/04 18:59:53 by rsudo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ static void	start_game(t_game *game)
 {
 	mlx_hook(game->win, KEY_PRESS, KEY_PRESS_MASK, key_press_hook, game);
 	mlx_hook(game->win, KEY_RELEASE, KEY_RELEASE_MASK, key_release_hook, game);
-	mlx_hook(game->win, 33, 1L << 17, destroy_and_exit, game);
+	mlx_hook(game->win, CLIENT_MESSAGE, \
+			STRUCTURE_NOTIFY_MASK, destroy_and_exit, game);
 	mlx_loop_hook(game->mlx, game_loop, game);
 	mlx_loop(game->mlx);
 }

@@ -6,7 +6,7 @@
 /*   By: rsudo <rsudo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 17:34:40 by rsudo             #+#    #+#             */
-/*   Updated: 2022/02/03 17:34:40 by rsudo            ###   ########.fr       */
+/*   Updated: 2022/02/04 18:37:37 by rsudo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,16 @@
 #include "mlx.h"
 #include "cubfile.h"
 #include "utils.h"
+#include "define.h"
 
 void	init_game(t_game *game, t_cub_file *cub_file)
 {
-	game->screen_width = 640;
-	game->screen_height = 480;
+	game->screen_width = SCREEN_WIDTH;
+	game->screen_height = SCREEN_HEIGHT;
 	game->mlx = mlx_xinit();
 	game->win = \
 		mlx_xnew_window(game->mlx, \
-		game->screen_width, game->screen_height, "cub3d");
+		game->screen_width, game->screen_height, "cub3D");
 	game->screen.img = \
 		mlx_xnew_image(game->mlx, \
 		game->screen_width, game->screen_height);
@@ -35,11 +36,11 @@ void	init_game(t_game *game, t_cub_file *cub_file)
 	game->dir_y = cub_file->dir_y;
 	game->plane_x = cub_file->plane_x;
 	game->plane_y = cub_file->plane_y;
-	game->pitch = 100;
+	game->pitch = PITCH;
 	game->sky_color = cub_file->sky_color;
 	game->ground_color = cub_file->ground_color;
-	game->is_moving = 0;
-	game->is_rotating = 0;
+	game->is_moving = false;
+	game->is_rotating = false;
 	game->move_dir = 0.0;
 	game->map = cub_file->map;
 }

@@ -6,7 +6,7 @@
 /*   By: rsudo <rsudo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 17:34:39 by rsudo             #+#    #+#             */
-/*   Updated: 2022/02/03 17:49:27 by rsudo            ###   ########.fr       */
+/*   Updated: 2022/02/04 18:47:00 by rsudo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ int	destroy_and_exit(void *arg)
 	clear_string_array(game->map);
 	mlx_destroy_display(game->mlx);
 	free(game->mlx);
-	exit(0);
+	exit(EXIT_FAILURE);
 	return (0);
 }
