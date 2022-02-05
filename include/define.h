@@ -6,7 +6,7 @@
 /*   By: rsudo <rsudo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 17:39:49 by rsudo             #+#    #+#             */
-/*   Updated: 2022/02/04 19:03:02 by rsudo            ###   ########.fr       */
+/*   Updated: 2022/02/05 21:25:26 by rsudo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,13 @@
 # define KEY_LEFT 65361
 # define KEY_RIGHT 65363
 # define KEY_ESC 65307
-# define MOVE_SPEED 0.1
+# ifdef __linux
+#  define MOVE_SPEED 0.05
+#  define ROTATE_SPEED 0.03
+# else
+#  define MOVE_SPEED 0.1
+#  define ROTATE_SPEED 0.05235987755982988
+# endif
 # define KEY_PRESS 2
 # define KEY_RELEASE 3
 # define CLIENT_MESSAGE 33
@@ -40,6 +46,5 @@
 # ifndef M_PI_2
 #  define M_PI_2 1.570796326
 # endif
-# define ROTATE_SPEED 0.05235987755982988
 
 #endif
