@@ -6,7 +6,7 @@
 /*   By: rsudo <rsudo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 17:34:40 by rsudo             #+#    #+#             */
-/*   Updated: 2022/02/03 17:34:40 by rsudo            ###   ########.fr       */
+/*   Updated: 2022/02/05 15:21:37 by rsudo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,15 @@
 #include "mlx.h"
 #include "cubfile.h"
 #include "utils.h"
+#include "define.h"
 
 void	init_game(t_game *game, t_cub_file *cub_file)
 {
-	game->screen_width = 640;
-	game->screen_height = 480;
 	game->mlx = mlx_xinit();
 	game->win = \
-		mlx_xnew_window(game->mlx, \
-		game->screen_width, game->screen_height, "cub3d");
+		mlx_xnew_window(game->mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "cub3D");
 	game->screen.img = \
-		mlx_xnew_image(game->mlx, \
-		game->screen_width, game->screen_height);
+		mlx_xnew_image(game->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
 	game->screen.addr = \
 		mlx_get_data_addr(game->screen.img, &game->screen.bits_per_pixel, \
 						&game->screen.line_length, &game->screen.endian);
@@ -35,11 +32,10 @@ void	init_game(t_game *game, t_cub_file *cub_file)
 	game->dir_y = cub_file->dir_y;
 	game->plane_x = cub_file->plane_x;
 	game->plane_y = cub_file->plane_y;
-	game->pitch = 100;
 	game->sky_color = cub_file->sky_color;
 	game->ground_color = cub_file->ground_color;
-	game->is_moving = 0;
-	game->is_rotating = 0;
+	game->is_moving = false;
+	game->is_rotating = false;
 	game->move_dir = 0.0;
 	game->map = cub_file->map;
 }

@@ -6,12 +6,13 @@
 /*   By: nyokota <nyokota@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 17:34:35 by rsudo             #+#    #+#             */
-/*   Updated: 2022/02/04 15:57:22 by nyokota          ###   ########.fr       */
+/*   Updated: 2022/02/04 18:41:32 by rsudo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw.h"
 #include "game.h"
+#include "define.h"
 
 void	dda(t_game *game, t_ray *ray)
 {
@@ -21,13 +22,13 @@ void	dda(t_game *game, t_ray *ray)
 		{
 			ray->side_dist_x += ray->delta_dist_x;
 			ray->map_x += ray->step_x;
-			ray->side = 0;
+			ray->side = X_SIDE;
 		}
 		else
 		{
 			ray->side_dist_y += ray->delta_dist_y;
 			ray->map_y += ray->step_y;
-			ray->side = 1;
+			ray->side = Y_SIDE;
 		}
 		if (game->map[ray->map_y][ray->map_x] == '1')
 			break ;

@@ -6,7 +6,7 @@
 /*   By: nyokota <nyokota@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 17:34:37 by rsudo             #+#    #+#             */
-/*   Updated: 2022/02/04 16:22:42 by rsudo            ###   ########.fr       */
+/*   Updated: 2022/02/05 15:25:37 by rsudo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void	set_step_and_sideDist(t_game *game, t_ray *ray)
 
 void	init_ray(t_game *game, t_ray *ray, int x)
 {
-	ray->camera_x = 2 * x / (double)game->screen_width - 1;
+	ray->camera_x = 2 * x / (double)SCREEN_WIDTH - 1;
 	ray->dir_x = game->dir_x + game->plane_x * ray->camera_x;
 	ray->dir_y = game->dir_y + game->plane_y * ray->camera_x;
 	ray->map_x = (int)game->pos_x;
