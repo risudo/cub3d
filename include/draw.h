@@ -6,7 +6,7 @@
 /*   By: rsudo <rsudo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 17:39:50 by rsudo             #+#    #+#             */
-/*   Updated: 2022/02/03 17:39:50 by rsudo            ###   ########.fr       */
+/*   Updated: 2022/02/05 15:27:23 by rsudo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void		init_ray(t_game *game, t_ray *ray, int x);
 uint32_t	get_pixel_color(t_img *img, int x, int y);
 void		set_pixel_color(t_img *img, int x, int y, int color);
 void		dda(t_game *game, t_ray *ray);
-void		calc_wall_height(t_game *game, t_ray *ray);
+void		calc_wall_height(t_ray *ray);
 void		set_wall(t_game *game, t_ray *ray, t_texture *texture);
 void		calc_coordinates_of_wall(t_game *game, \
 				t_ray *ray, t_texture *texture);

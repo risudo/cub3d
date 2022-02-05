@@ -6,7 +6,7 @@
 /*   By: rsudo <rsudo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 17:39:49 by rsudo             #+#    #+#             */
-/*   Updated: 2022/02/03 17:39:49 by rsudo            ###   ########.fr       */
+/*   Updated: 2022/02/04 19:03:02 by rsudo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,16 @@
 # define MOVE_SPEED 0.1
 # define KEY_PRESS 2
 # define KEY_RELEASE 3
+# define CLIENT_MESSAGE 33
 # define KEY_PRESS_MASK 1L
 # define KEY_RELEASE_MASK 2L
+# define STRUCTURE_NOTIFY_MASK 131072
 # define INF 2147483647
+# define SCREEN_WIDTH 640
+# define SCREEN_HEIGHT 480
+# define PITCH 100
+# define X_SIDE 0
+# define Y_SIDE 1
 
 # ifndef M_PI
 #  define M_PI 3.1415926535

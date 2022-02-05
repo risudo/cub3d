@@ -6,7 +6,7 @@
 /*   By: nyokota <nyokota@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 17:34:41 by rsudo             #+#    #+#             */
-/*   Updated: 2022/02/04 16:01:21 by nyokota          ###   ########.fr       */
+/*   Updated: 2022/02/04 18:50:41 by rsudo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,6 @@
 #include "define.h"
 #include <stdlib.h>
 #include <math.h>
-
-/*
-#include <stdio.h>
-#define CLEAR "\033[1;1H\033[0J"
-void	print_player_info(t_game *game)
-{
-	printf("%s\n", CLEAR);
-	printf("pos_x: %lf\n", game->pos_x);
-	printf("pos_y: %lf\n", game->pos_y);
-	printf("dir_x: %lf\n", game->dir_x);
-	printf("dir_y: %lf\n", game->dir_y);
-}
-*/
 
 static bool	is_move_key(int key_code)
 {
