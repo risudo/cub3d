@@ -3,8 +3,8 @@ SO ./textures/south_61.xpm
 WE ./textures/west_61.xpm
 EA ./textures/east_61.xpm
 
-F 102,205,170
-C 105,105,105
+F 30,144,255
+C 85,107,47
 
 111111111111111111111111
 100000000000000000000001
