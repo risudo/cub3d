@@ -6,7 +6,7 @@
 /*   By: nyokota <nyokota@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 17:34:34 by rsudo             #+#    #+#             */
-/*   Updated: 2022/02/04 16:24:03 by rsudo            ###   ########.fr       */
+/*   Updated: 2022/02/04 17:33:39 by rsudo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ void	calc_coordinates_of_wall(t_game *game, t_ray *ray, t_texture *texture)
 	texture->wall_x -= floor(texture->wall_x);
 	texture->texture_x = \
 			(int)(texture->wall_x * (double)(texture->wall->width));
-	if (ray->side == 0 && ray->dir_x > 0)
+	if (ray->side == 0 && ray->dir_x < 0)
 		texture->texture_x = texture->wall->width - texture->texture_x - 1;
-	if (ray->side == 1 && ray->dir_y > 0)
+	if (ray->side == 1 && ray->dir_y < 0)
 		texture->texture_x = texture->wall->width - texture->texture_x - 1;
 	texture->step = 1.0 * texture->wall->height / ray->line_height;
 	texture->texture_pos = \
