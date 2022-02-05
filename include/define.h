@@ -26,6 +26,7 @@
 # define KEY_RELEASE 3
 # define KEY_PRESS_MASK 1L
 # define KEY_RELEASE_MASK 2L
+
 # define INF 2147483647
 
 # ifndef M_PI
