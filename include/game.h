@@ -6,7 +6,7 @@
 /*   By: rsudo <rsudo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 17:39:51 by rsudo             #+#    #+#             */
-/*   Updated: 2022/02/03 17:39:51 by rsudo            ###   ########.fr       */
+/*   Updated: 2022/02/05 15:20:19 by rsudo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ typedef struct s_game
 	t_img		south_wall;
 	t_img		west_wall;
 	t_img		east_wall;
-	int			screen_width;
-	int			screen_height;
 	uint32_t	sky_color;
 	uint32_t	ground_color;
 	char		**map;
@@ -49,7 +47,6 @@ typedef struct s_game
 	double		dir_y;
 	double		plane_x;
 	double		plane_y;
-	int			pitch;
 	bool		is_moving;
 	bool		is_rotating;
 	double		move_dir;

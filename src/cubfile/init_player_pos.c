@@ -6,12 +6,13 @@
 /*   By: rsudo <rsudo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 17:34:17 by rsudo             #+#    #+#             */
-/*   Updated: 2022/02/03 17:34:32 by rsudo            ###   ########.fr       */
+/*   Updated: 2022/02/05 16:15:51 by rsudo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cubfile.h"
 #include "utils.h"
+#include <limits.h>
 
 static bool	is_player_pos(char c)
 {
@@ -43,6 +44,8 @@ void	init_player_pos(t_cub_file *cub_file)
 		j = 0;
 		while (cub_file->map[i][j])
 		{
+			if (i >= INT_MAX - 2 || j >= INT_MAX - 2)
+				xput_error("map is too large");
 			if (!is_valid_char(cub_file->map[i][j]))
 				xput_error("invalid character");
 			if (is_player && is_player_pos(cub_file->map[i][j]))
