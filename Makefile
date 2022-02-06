@@ -107,8 +107,13 @@ re: fclean all
 norm:
 	norminette ./src ./include
 
+ifeq ($(shell uname), Darwin)
 nm:
 	nm -u cub3D | grep -E "^_" | grep -Ev "^_X" | grep -Ev "^__" | cut -b 2- | grep -Ev "^(open|close|read|write|printf|malloc|free|perror|strerror|exit|sin|cos)" | xargs -I{} bash -c "echo '[[' {} ']]'; grep {} src/*/* src/main.c"
+else
+nm:
+	nm -u cub3D | awk '{print $$2}' | grep -Ev "^_" | grep -v "X" | grep -Ev "(malloc|exit|close|free|write|read|perror|cos|sin|open|floor)" | awk -F'@' '{print $$1}' | xargs -I{} bash -c "echo '[[' {} ']]'; grep {} src/*/* src/main.c"
+endif
 
 test:
 	./test/test.sh
