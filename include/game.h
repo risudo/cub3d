@@ -6,7 +6,7 @@
 /*   By: rsudo <rsudo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 17:39:51 by rsudo             #+#    #+#             */
-/*   Updated: 2022/02/05 15:20:19 by rsudo            ###   ########.fr       */
+/*   Updated: 2022/02/07 21:33:12 by rsudo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ typedef struct s_game
 	t_img		south_wall;
 	t_img		west_wall;
 	t_img		east_wall;
-	uint32_t	sky_color;
-	uint32_t	ground_color;
+	uint32_t	floor_color;
+	uint32_t	ceiling_color;
 	char		**map;
 	double		pos_x;
 	double		pos_y;

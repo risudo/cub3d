@@ -6,7 +6,7 @@
 /*   By: rsudo <rsudo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 17:34:36 by rsudo             #+#    #+#             */
-/*   Updated: 2022/02/05 15:25:04 by rsudo            ###   ########.fr       */
+/*   Updated: 2022/02/07 21:41:20 by rsudo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	draw_line(t_game *game, t_ray *ray, t_texture *texture, int x)
 
 	y = 0;
 	while (y < ray->draw_start && y < SCREEN_HEIGHT)
-		set_pixel_color(&game->screen, x, y++, game->sky_color);
+		set_pixel_color(&game->screen, x, y++, game->ceiling_color);
 	while (y < ray->draw_end && y < SCREEN_HEIGHT)
 	{
 		texture->texture_y = \
@@ -32,5 +32,5 @@ void	draw_line(t_game *game, t_ray *ray, t_texture *texture, int x)
 		set_pixel_color(&game->screen, x, y++, color);
 	}
 	while (y < SCREEN_HEIGHT)
-		set_pixel_color(&game->screen, x, y++, game->ground_color);
+		set_pixel_color(&game->screen, x, y++, game->floor_color);
 }

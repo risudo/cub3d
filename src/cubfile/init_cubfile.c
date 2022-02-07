@@ -6,7 +6,7 @@
 /*   By: rsudo <rsudo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 17:34:15 by rsudo             #+#    #+#             */
-/*   Updated: 2022/02/03 17:34:31 by rsudo            ###   ########.fr       */
+/*   Updated: 2022/02/07 21:28:37 by rsudo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	init_cub_file(t_cub_file *cub_file, char **file_content)
 	cub_file->west_wall_path = get_path_to_texture("WE", file_content[idx++]);
 	cub_file->east_wall_path = get_path_to_texture("EA", file_content[idx++]);
 	skip_empty_line(file_content, &idx);
-	cub_file->sky_color = get_color(file_content[idx++], 'F');
-	cub_file->ground_color = get_color(file_content[idx++], 'C');
+	cub_file->floor_color = get_color(file_content[idx++], 'F');
+	cub_file->ceiling_color = get_color(file_content[idx++], 'C');
 	skip_empty_line(file_content, &idx);
 	cub_file->map = duplicate_map(&file_content[idx]);
 	init_player(cub_file);

@@ -6,7 +6,7 @@
 /*   By: rsudo <rsudo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 17:34:40 by rsudo             #+#    #+#             */
-/*   Updated: 2022/02/05 15:21:37 by rsudo            ###   ########.fr       */
+/*   Updated: 2022/02/07 21:33:43 by rsudo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void	init_game(t_game *game, t_cub_file *cub_file)
 	game->dir_y = cub_file->dir_y;
 	game->plane_x = cub_file->plane_x;
 	game->plane_y = cub_file->plane_y;
-	game->sky_color = cub_file->sky_color;
-	game->ground_color = cub_file->ground_color;
+	game->floor_color = cub_file->floor_color;
+	game->ceiling_color = cub_file->ceiling_color;
 	game->is_moving = false;
 	game->is_rotating = false;
 	game->move_dir = 0.0;
