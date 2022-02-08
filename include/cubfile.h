@@ -6,7 +6,7 @@
 /*   By: rsudo <rsudo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 17:39:49 by rsudo             #+#    #+#             */
-/*   Updated: 2022/02/04 19:08:40 by rsudo            ###   ########.fr       */
+/*   Updated: 2022/02/07 21:28:21 by rsudo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ typedef struct s_cub_file {
 	char		*south_wall_path;
 	char		*west_wall_path;
 	char		*east_wall_path;
-	uint32_t	sky_color;
-	uint32_t	ground_color;
+	uint32_t	floor_color;
+	uint32_t	ceiling_color;
 	char		**map;
 	int			pos_x;
 	int			pos_y;
