@@ -6,7 +6,7 @@
 /*   By: rsudo <rsudo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 17:34:40 by rsudo             #+#    #+#             */
-/*   Updated: 2022/02/07 21:33:43 by rsudo            ###   ########.fr       */
+/*   Updated: 2022/02/08 22:41:49 by rsudo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	init_game(t_game *game, t_cub_file *cub_file)
 	game->screen.addr = \
 		mlx_get_data_addr(game->screen.img, &game->screen.bits_per_pixel, \
 						&game->screen.line_length, &game->screen.endian);
-	game->pos_x = cub_file->pos_x;
-	game->pos_y = cub_file->pos_y;
+	game->pos_x = cub_file->pos_x + 0.5;
+	game->pos_y = cub_file->pos_y + 0.5;
 	game->dir_x = cub_file->dir_x;
 	game->dir_y = cub_file->dir_y;
 	game->plane_x = cub_file->plane_x;
