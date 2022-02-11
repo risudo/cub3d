@@ -51,7 +51,7 @@ GAME	=	game_loop.c \
 
 CUBFILE	=	init_cubfile.c \
 			read_file.c \
-			get_color.c \
+			get_color_code.c \
 			skip_empty_line.c \
 			get_path_to_texture.c \
 			init_player.c \
