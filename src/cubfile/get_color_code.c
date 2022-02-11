@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_color.c                                        :+:      :+:    :+:   */
+/*   get_color_code.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rsudo <rsudo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/03 17:34:14 by rsudo             #+#    #+#             */
-/*   Updated: 2022/02/03 17:34:30 by rsudo            ###   ########.fr       */
+/*   Created: 2022/02/11 19:31:18 by rsudo             #+#    #+#             */
+/*   Updated: 2022/02/11 19:31:21 by rsudo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static uint8_t	cub_atoi(char **str, char end)
 	return (ret);
 }
 
-uint32_t	get_color(char *line, char identifier)
+uint32_t	get_color_code(char *line, char identifier)
 {
 	uint8_t	red;
 	uint8_t	grean;

@@ -6,7 +6,7 @@
 /*   By: rsudo <rsudo@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 17:39:49 by rsudo             #+#    #+#             */
-/*   Updated: 2022/02/07 21:28:21 by rsudo            ###   ########.fr       */
+/*   Updated: 2022/02/11 19:17:26 by rsudo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char		**read_file(char *filepath);
 void		init_cub_file(t_cub_file *cub_file, char **file_content);
 int			validate_map(char **map, int player_pos_x, int player_pos_y);
 char		*get_path_to_texture(char *direction, char *line);
-uint32_t	get_color(char *line, char identifier);
+uint32_t	get_color_code(char *line, char identifier);
 void		skip_empty_line(char **file_content, size_t *idx);
 void		init_player(t_cub_file *cub_file);
 void		init_player_pos(t_cub_file *cub_file);
