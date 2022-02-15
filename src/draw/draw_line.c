@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   draw_line.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rsudo <rsudo@student.42tokyo.jp>           +#+  +:+       +#+        */
+/*   By: nyokota <nyokota@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 17:34:36 by rsudo             #+#    #+#             */
-/*   Updated: 2022/02/07 21:41:20 by rsudo            ###   ########.fr       */
+/*   Updated: 2022/02/15 14:28:24 by nyokota          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw.h"
 #include "game.h"
 #include "define.h"
+#include <math.h>
 
 void	draw_line(t_game *game, t_ray *ray, t_texture *texture, int x)
 {
@@ -25,7 +26,7 @@ void	draw_line(t_game *game, t_ray *ray, t_texture *texture, int x)
 	while (y < ray->draw_end && y < SCREEN_HEIGHT)
 	{
 		texture->texture_y = \
-				(int)texture->texture_pos & (texture->wall->height - 1);
+			fmod(texture->texture_pos, texture->wall->height - 1);
 		texture->texture_pos += texture->step;
 		color = get_pixel_color(texture->wall, \
 				texture->texture_x, texture->texture_y);
