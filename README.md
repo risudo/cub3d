@@ -1,5 +1,6 @@
 # cub3d
 ![norminette](https://github.com/risudo/cub3d/workflows/norminette/badge.svg)
+<img alt="GitHub" src="https://img.shields.io/github/license/risudo/cub3d">
 
 Rendering a 3D game using ray-casting.
 
