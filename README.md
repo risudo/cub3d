@@ -4,4 +4,5 @@
 Rendering a 3D game using ray-casting.
 
 ## Demo
-https://user-images.githubusercontent.com/76856052/152928747-ffee1843-4c75-414d-b280-f7716483bf40.mov
+
+https://user-images.githubusercontent.com/76856052/154199872-6d689496-71b8-4795-8169-9ffc503fa201.mov
