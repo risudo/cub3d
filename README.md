@@ -2,7 +2,7 @@
 ![norminette](https://github.com/risudo/cub3d/workflows/norminette/badge.svg)
 <img alt="GitHub" src="https://img.shields.io/github/license/risudo/cub3d">
 
-Rendering a 3D game using ray-casting.
+Simple 3D game using ray-casting.
 
 ## Demo
 
@@ -35,7 +35,7 @@ $ make test && cat log.txt
 
 ## Requirement
 
-I have tested it on Ubuntu and Mac.
+It is tested on Ubuntu and Mac.
 
 On Mac, Xquarts needs to be installed.
 
