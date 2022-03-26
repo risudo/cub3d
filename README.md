@@ -35,9 +35,9 @@ $ make test && cat log.txt
 
 ## Requirement
 
-It is tested on Ubuntu and Mac.
+It needs X11 environments.
 
-On Mac, Xquarts needs to be installed.
+Therefore, on MaxOS, Xquarts needs to be installed.
 
 # For more info
 
